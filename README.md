@@ -12,6 +12,7 @@ para resolver problemas reais.
 
 - HTML
 - CSS
+- JavaScript
 
 ## Objetivo
 
