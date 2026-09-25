@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <!-- Configuração da página e conexão com o arquivo de estilos. -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfólio de Júlia Romeira: do suporte técnico ao desenvolvimento de software."
+    />
+    <title>Júlia Romeira | Desenvolvimento de Software</title>
+    <link rel="stylesheet" href="estilos.css" />
+  </head>
+
+  <body>
+    <!-- O cabeçalho reúne a marca e os links de navegação. -->
+    <header class="cabecalho">
+      <div class="container navegacao">
+        <a class="marca" href="#inicio" aria-label="Júlia Romeira — início">
+          jr<span>.</span>
+        </a>
+
+        <nav aria-label="Navegação principal">
+          <a href="#inicio">Início</a>
+          <a href="https://github.com/JuliaRomeira">GitHub ↗</a>
+        </nav>
+
+        <a class="botao botao-pequeno" href="https://www.linkedin.com/in/juliaromeira/">
+          Vamos conversar <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- O main contém o conteúdo principal. Esta é a primeira seção do site. -->
+    <main>
+      <section class="container apresentacao" id="inicio" aria-labelledby="titulo">
+        <div class="apresentacao-texto">
+          <p class="etiqueta">Júlia Romeira · Desenvolvimento de software</p>
+
+          <h1 id="titulo">
+           hoje.
+            <span>Soluções amanhã.</span>
+          </h1>
+
+          <p class="descricao">
+            Do suporte técnico ao desenvolvimento de software. Transformo a
+            experiência com pessoas e sistemas em motivação para criar soluções
+            que fazem sentido.
+          </p>
+
+          <div class="acoes">
+            <a class="botao" href="#projetos">
+              Ver meus projetos <span aria-hidden="true">↗</span>
+            </a>
+            <a class="link-secundario" href="https://www.linkedin.com/in/juliaromeira/">
+              Conheça minha trajetória <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Mais adiante, este espaço receberá uma fotografia sua. -->
+        <figure class="retrato">
+          <span class="retrato-numero" aria-hidden="true">01 / Presença</span>
+          <span class="retrato-iniciais" aria-hidden="true">JR</span>
+          <figcaption>
+            <span>Seu retrato, seu olhar.</span>
+            <small>Espaço para foto em preto e branco</small>
+          </figcaption>
+        </figure>
+
+        <div class="apresentacao-rodape">
+          <span>Pessoas. Processos. Código.</span>
+          <span>Um projeto de cada vez.</span>
+        </div>
+      </section>
+
+      <!-- Cada projeto terá uma seção própria. Começamos pela Mira, o case principal. -->
+      <section class="projeto container" id="projetos" aria-labelledby="titulo-mira">
+        <div class="projeto-cabecalho">
+          <p class="etiqueta">01 / Projeto em destaque</p>
+          <p class="projeto-tipo">Catálogo e cotações para um negócio real.</p>
+        </div>
+
+        <div class="projeto-conteudo">
+          <div>
+            <h2 id="titulo-mira">Mira<br />Distribuidora.</h2>
+            <p class="descricao projeto-descricao">
+              Uma plataforma para tornar a descoberta de produtos e o pedido de
+              cotações mais simples para clientes e para o negócio.
+            </p>
+
+            <ul class="tecnologias" aria-label="Tecnologias usadas na Mira Distribuidora">
+              <li>Next.js</li>
+              <li>TypeScript</li>
+              <li>PostgreSQL</li>
+              <li>Prisma</li>
+            </ul>
+
+            <div class="acoes">
+              <a class="botao" href="https://miraf-web.vercel.app/">Ver projeto <span aria-hidden="true">↗</span></a>
+              <a class="link-secundario" href="https://github.com/JuliaRomeira/miraf-web">Ver no GitHub <span aria-hidden="true">↗</span></a>
+            </div>
+          </div>
+
+          <!-- Este é o primeiro mockup. Na próxima etapa, ele ganhará movimento. -->
+          <div class="mockup" aria-label="Espaço reservado para a interface da Mira Distribuidora">
+            <div class="mockup-barra"><span></span><span></span><span></span></div>
+            <div class="mockup-interface">
+              <p>MIRA</p>
+              <div class="mockup-linhas"><span></span><span></span><span></span></div>
+              <div class="mockup-cards"><span></span><span></span><span></span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
