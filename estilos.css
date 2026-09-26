@@ -170,57 +170,31 @@ h1 span {
   text-underline-offset: 5px;
 }
 
-/* 6. Position permite colocar as iniciais e a legenda dentro do retrato. */
+/* 6. O tratamento em CSS preserva o arquivo original da fotografia. */
 .retrato {
   position: relative;
   min-width: 0;
   height: 450px;
   margin: 0;
   overflow: hidden;
-  border: 1px solid #343438;
-  border-radius: 4px;
-  background: linear-gradient(130deg, #535358, #242428 55%, #101012);
+  background: #000;
 }
 
-.retrato-numero {
+.retrato img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: grayscale(1);
+}
+
+.retrato::after {
   position: absolute;
-  top: 28px;
-  left: 28px;
-  color: #d0d0d5;
-  font-size: 10px;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-}
-
-.retrato-iniciais {
-  position: absolute;
-  top: 85px;
-  left: 15%;
-  color: #a8a8af;
-  opacity: 0.4;
-  font-family: Georgia, serif;
-  font-size: 170px;
-  font-style: italic;
-  letter-spacing: -18px;
-}
-
-.retrato figcaption {
-  position: absolute;
-  right: 24px;
-  bottom: 28px;
-  left: 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 20px;
-}
-
-.retrato small {
-  color: var(--cor-suave);
-  font-size: 9px;
-  line-height: 1.6;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  inset: 0;
+  background: linear-gradient(to top, var(--cor-fundo), transparent 18%);
+  pointer-events: none;
+  content: "";
 }
 
 .apresentacao-rodape {
@@ -833,11 +807,10 @@ html {
   }
 
   .retrato {
-    height: 350px;
-  }
-
-  .retrato-iniciais {
-    top: 40px;
+    width: min(100%, 420px);
+    height: auto;
+    aspect-ratio: 1;
+    justify-self: center;
   }
 
   .projeto {
