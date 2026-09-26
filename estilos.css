@@ -431,21 +431,12 @@ h2 {
   box-shadow: 0 35px 80px rgba(0, 0, 0, 0.55), inset 0 0 0 2px #1d1d20;
 }
 
-/* A câmera e o indicador ficam fora da área útil do aplicativo. */
-.smartphone-tela {
-  height: 650px;
-  padding-block: 44px 18px;
-  overflow: hidden;
-  border-radius: 39px;
-  background: #17171b;
-}
-
 .smartphone iframe {
   display: block;
   width: 100%;
-  height: 100%;
+  height: 650px;
   border: 0;
-  border-radius: 0;
+  border-radius: 39px;
   background: #101114;
   pointer-events: none;
 }
@@ -815,7 +806,7 @@ h2 {
   }
 
   .projeto {
-    padding-block: 56px;
+    padding-block: 90px;
   }
 
   .projeto-cabecalho,
@@ -825,17 +816,11 @@ h2 {
 
   .projeto-cabecalho {
     display: grid;
-    gap: 14px;
-    padding-bottom: 22px;
-  }
-
-  .projeto-cabecalho .etiqueta {
-    margin-bottom: 0;
   }
 
   .projeto-conteudo {
-    gap: 32px;
-    padding-top: 36px;
+    gap: 42px;
+    padding-top: 48px;
   }
 
   h2 {
@@ -859,7 +844,7 @@ h2 {
   }
 
   .projeto-leve {
-    padding-bottom: 56px;
+    padding-bottom: 100px;
   }
 
   .projeto-leve-texto {
@@ -875,18 +860,18 @@ h2 {
     width: min(320px, 100%);
   }
 
-  .smartphone-tela {
+  .smartphone iframe {
     height: min(590px, 165vw);
   }
 
   .projeto-base {
-    padding-bottom: 56px;
+    padding-bottom: 100px;
   }
 
   .base-intro {
     grid-template-columns: 1fr;
     gap: 30px;
-    padding-block: 36px;
+    padding-block: 52px;
   }
 
   .base-live {
@@ -899,7 +884,7 @@ h2 {
 
   .case-grid {
     grid-template-columns: 1fr;
-    margin-top: 36px;
+    margin-top: 52px;
   }
 
   .case-grid article {
@@ -907,13 +892,13 @@ h2 {
   }
 
   .case-grid p {
-    margin-top: 20px;
+    margin-top: 32px;
   }
 
   .experiencia,
   .stack,
   .contato {
-    padding-block: 64px;
+    padding-block: 100px;
   }
 
   .secao-cabecalho,
@@ -925,7 +910,7 @@ h2 {
   .secao-cabecalho {
     display: grid;
     gap: 14px;
-    margin-bottom: 36px;
+    margin-bottom: 52px;
   }
 
   .experiencia-grid,
@@ -942,11 +927,7 @@ h2 {
   }
 
   .experiencia blockquote {
-    margin-top: 56px;
-  }
-
-  .stack-titulo {
-    margin-bottom: 36px;
+    margin-top: 90px;
   }
 
   .stack-grid {
@@ -963,7 +944,7 @@ h2 {
   }
 
   .contato {
-    min-height: auto;
+    min-height: 80vh;
   }
 
   .contato h2 {
@@ -973,7 +954,6 @@ h2 {
 
   .contato footer {
     flex-direction: column;
-    margin-top: 64px;
   }
 }
 
