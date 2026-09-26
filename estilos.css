@@ -462,6 +462,35 @@ h2 {
   pointer-events: none;
 }
 
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 72px;
+  border-top: 1px solid var(--cor-borda);
+  border-left: 1px solid var(--cor-borda);
+}
+
+.case-grid article {
+  min-height: 190px;
+  padding: 26px;
+  border-right: 1px solid var(--cor-borda);
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.case-grid small {
+  color: #707078;
+  font-size: 9px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.case-grid p {
+  margin: 62px 0 0;
+  color: #b6b6bd;
+  font-size: 14px;
+  line-height: 1.65;
+}
+
 .experiencia,
 .stack,
 .contato {
@@ -762,6 +791,19 @@ h2 {
 
   .base-live iframe {
     height: 478px;
+  }
+
+  .case-grid {
+    grid-template-columns: 1fr;
+    margin-top: 52px;
+  }
+
+  .case-grid article {
+    min-height: auto;
+  }
+
+  .case-grid p {
+    margin-top: 32px;
   }
 
   .experiencia,
