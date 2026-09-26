@@ -37,3 +37,16 @@ function solicitarAtualizacao() {
 window.addEventListener("scroll", solicitarAtualizacao, { passive: true });
 window.addEventListener("resize", solicitarAtualizacao);
 atualizarNotebook();
+
+const elementosParaRevelar = document.querySelectorAll("[data-reveal]");
+
+const observador = new IntersectionObserver(
+  (entradas) => {
+    entradas.forEach((entrada) => {
+      if (entrada.isIntersecting) entrada.target.classList.add("visivel");
+    });
+  },
+  { threshold: 0.18 }
+);
+
+elementosParaRevelar.forEach((elemento) => observador.observe(elemento));

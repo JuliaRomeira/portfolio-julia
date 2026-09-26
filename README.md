@@ -7,6 +7,7 @@ para resolver problemas reais.
 ## Projeto em destaque
 
 - **Mira Distribuidora:** plataforma de catálogo e cotações para um negócio real.
+- **Leve MP4:** compactador de vídeos que processa os arquivos diretamente no navegador.
 
 ## Tecnologias desta primeira versão
 
