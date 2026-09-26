@@ -177,7 +177,7 @@ h1 span {
   height: 450px;
   margin: 0;
   overflow: hidden;
-  background: #000;
+  background: var(--cor-fundo);
 }
 
 .retrato img {
@@ -186,7 +186,9 @@ h1 span {
   height: 100%;
   object-fit: contain;
   object-position: center bottom;
+  /* O preto da foto se mistura ao fundo sem retângulo aparente. */
   filter: grayscale(1);
+  mix-blend-mode: lighten;
 }
 
 .retrato::after {
@@ -472,6 +474,37 @@ h2 {
   border: 0;
   background: #f5f7fa;
   pointer-events: none;
+}
+
+.projeto-percurso, .demonstracao {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.percurso-etapas {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.percurso-etapas span { color: var(--cor-suave); font-size: 12px; }
+.percurso-etapas h3 { font-size: 22px; font-weight: 500; margin: 16px 0 10px; }
+.percurso-etapas p, .demo-nota { color: var(--cor-suave); font-size: 14px; line-height: 1.7; }
+.demonstracao h3 { font-size: clamp(26px, 4vw, 38px); font-weight: 500; margin: 0 0 16px; letter-spacing: -1px; }
+.demo-videos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 24px; }
+.demo-videos figure { margin: 0; min-width: 0; }
+.demo-videos video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #17171b; border-radius: 8px; }
+.demo-videos figcaption { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding-block: 14px; font-size: 14px; }
+.demo-videos figcaption span { color: var(--cor-suave); }
+.demo-resultado { font-size: 20px; margin: 24px 0 8px; }
+.demo-nota { max-width: 720px; }
+
+@media (max-width: 760px) {
+  .percurso-etapas, .demo-videos { grid-template-columns: 1fr; gap: 24px; }
 }
 
 .case-grid {
