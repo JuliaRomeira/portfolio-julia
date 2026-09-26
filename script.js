@@ -50,3 +50,6 @@ const observador = new IntersectionObserver(
 );
 
 elementosParaRevelar.forEach((elemento) => observador.observe(elemento));
+
+const ano = document.querySelector("[data-year]");
+if (ano) ano.textContent = new Date().getFullYear();

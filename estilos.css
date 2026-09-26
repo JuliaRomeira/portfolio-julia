@@ -568,6 +568,172 @@ h2 {
   font-size: 13px;
 }
 
+.experiencia,
+.stack,
+.contato {
+  padding-block: 150px;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.secao-cabecalho {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 72px;
+}
+
+.secao-cabecalho .etiqueta {
+  margin: 0;
+}
+
+.secao-cabecalho > span {
+  color: var(--cor-suave);
+  font-size: 13px;
+}
+
+.experiencia-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+.cargo {
+  padding: 34px;
+  border: 1px solid #33333a;
+  border-radius: 8px;
+  background: linear-gradient(145deg, #18181c, #0d0d0f);
+}
+
+.cargo-topo {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid #303036;
+}
+
+.cargo small,
+.cargo-topo > span {
+  color: #818189;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.cargo h3 {
+  margin: 10px 0 0;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.cargo ul {
+  display: grid;
+  gap: 16px;
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cargo li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #b8b8bf;
+  font-size: 14px;
+}
+
+.cargo li::before {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #73737b;
+  content: "";
+}
+
+.experiencia blockquote {
+  max-width: 900px;
+  margin: 130px auto 0;
+  color: #d5d5d9;
+  font-family: Georgia, serif;
+  font-size: clamp(34px, 5vw, 68px);
+  font-style: italic;
+  line-height: 1.14;
+  letter-spacing: -2px;
+  text-align: center;
+}
+
+.stack-titulo {
+  display: grid;
+  grid-template-columns: 1fr 0.7fr;
+  align-items: end;
+  gap: 64px;
+  margin-bottom: 72px;
+}
+
+.stack-titulo h2 {
+  margin-bottom: 0;
+}
+
+.stack-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--cor-borda);
+  border-left: 1px solid var(--cor-borda);
+}
+
+.stack-grid article {
+  display: grid;
+  min-height: 190px;
+  padding: 25px;
+  border-right: 1px solid var(--cor-borda);
+  border-bottom: 1px solid var(--cor-borda);
+  transition: background 250ms ease;
+}
+
+.stack-grid article:hover {
+  background: #111114;
+}
+
+.stack-grid span,
+.stack-grid small {
+  color: #6f6f77;
+  font-size: 10px;
+}
+
+.stack-grid strong {
+  align-self: end;
+  margin-bottom: 8px;
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -1px;
+}
+
+.contato {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contato h2 {
+  font-size: clamp(72px, 11vw, 150px);
+  line-height: 0.84;
+  letter-spacing: -7px;
+}
+
+.contato footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 130px;
+  padding-top: 26px;
+  border-top: 1px solid var(--cor-borda);
+  color: #777780;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
 [data-reveal] {
   opacity: 0;
   transform: translateY(54px);
@@ -609,6 +775,8 @@ h2 {
     order: 3;
     width: 100%;
     justify-content: center;
+    gap: 18px;
+    overflow-x: auto;
   }
 
   .apresentacao {
@@ -717,5 +885,66 @@ h2 {
 
   .base-artigos {
     grid-template-columns: 1fr;
+  }
+
+  .experiencia,
+  .stack,
+  .contato {
+    padding-block: 100px;
+  }
+
+  .secao-cabecalho,
+  .experiencia-grid,
+  .stack-titulo {
+    grid-template-columns: 1fr;
+  }
+
+  .secao-cabecalho {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 52px;
+  }
+
+  .experiencia-grid,
+  .stack-titulo {
+    gap: 42px;
+  }
+
+  .cargo {
+    padding: 26px;
+  }
+
+  .cargo-topo {
+    display: grid;
+  }
+
+  .experiencia blockquote {
+    margin-top: 90px;
+  }
+
+  .stack-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stack-grid article {
+    min-height: 160px;
+    padding: 20px;
+  }
+
+  .stack-grid strong {
+    font-size: 21px;
+  }
+
+  .contato {
+    min-height: 80vh;
+  }
+
+  .contato h2 {
+    font-size: clamp(64px, 18vw, 100px);
+    letter-spacing: -4px;
+  }
+
+  .contato footer {
+    flex-direction: column;
   }
 }
