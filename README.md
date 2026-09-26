@@ -8,7 +8,7 @@ para resolver problemas reais.
 
 - **Mira Distribuidora:** plataforma de catálogo e cotações para um negócio real.
 - **Leve MP4:** compactador de vídeos que processa os arquivos diretamente no navegador.
-- **Base de Conhecimento:** portal de documentação para clientes, com busca e conteúdo em Markdown.
+- **[Base de Conhecimento](https://base-de-conhecimento-facil.netlify.app/):** portal de documentação para clientes, com busca e conteúdo em Markdown.
 
 ## Tecnologias desta primeira versão
 
