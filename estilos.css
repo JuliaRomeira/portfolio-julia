@@ -59,6 +59,14 @@ a:focus-visible {
   color: var(--cor-suave);
 }
 
+.menu-toggle {
+  display: none;
+  border: 0;
+  background: transparent;
+  color: var(--cor-texto);
+  font: inherit;
+}
+
 nav {
   display: flex;
   gap: 28px;
@@ -409,11 +417,8 @@ h2 {
   display: grid;
   place-items: center;
   gap: 24px;
-  min-height: 760px;
-  padding: 38px;
-  border: 1px solid #24242a;
-  border-radius: 16px;
-  background: radial-gradient(circle at 50% 42%, #24232a, #111114 56%, #0b0b0d 100%);
+  min-height: 730px;
+  padding-block: 30px;
 }
 
 .smartphone {
@@ -733,17 +738,52 @@ h2 {
 /* 8. Em telas menores, a apresentação passa a ter apenas uma coluna. */
 @media (max-width: 760px) {
   .navegacao {
-    flex-wrap: wrap;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 14px;
     padding-block: 18px;
   }
 
+  .menu-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    cursor: pointer;
+  }
+
+  .menu-toggle span {
+    font-size: 18px;
+    transition: transform 200ms ease;
+  }
+
+  .menu-toggle[aria-expanded="true"] span {
+    transform: rotate(45deg);
+  }
+
   .navegacao nav {
+    display: none;
     order: 3;
+    grid-column: 1 / -1;
     width: 100%;
-    justify-content: center;
-    gap: 18px;
-    overflow-x: auto;
+    flex-direction: column;
+    gap: 0;
+    padding-top: 10px;
+    border-top: 1px solid var(--cor-borda);
+  }
+
+  .navegacao nav.aberto {
+    display: flex;
+  }
+
+  .navegacao nav a {
+    width: 100%;
+    min-height: 48px;
+    border-bottom: 1px solid #1d1d21;
+  }
+
+  .navegacao > .botao {
+    display: none;
   }
 
   .apresentacao {
@@ -812,16 +852,16 @@ h2 {
   }
 
   .smartphone-stage {
-    min-height: 690px;
-    padding: 28px 18px;
+    min-height: auto;
+    padding: 20px 0 4px;
   }
 
   .smartphone {
-    width: min(310px, 100%);
+    width: min(320px, 100%);
   }
 
   .smartphone iframe {
-    height: 590px;
+    height: min(590px, 165vw);
   }
 
   .projeto-base {
@@ -914,5 +954,32 @@ h2 {
 
   .contato footer {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: calc(100% - 36px);
+    max-width: 1120px;
+  }
+
+  .acoes {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .botao,
+  .link-secundario {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .stack-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .smartphone-legenda {
+    text-align: center;
   }
 }

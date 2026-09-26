@@ -53,3 +53,19 @@ elementosParaRevelar.forEach((elemento) => observador.observe(elemento));
 
 const ano = document.querySelector("[data-year]");
 if (ano) ano.textContent = new Date().getFullYear();
+
+const botaoMenu = document.querySelector(".menu-toggle");
+const menu = document.querySelector("#menu-principal");
+
+botaoMenu?.addEventListener("click", () => {
+  const aberto = botaoMenu.getAttribute("aria-expanded") === "true";
+  botaoMenu.setAttribute("aria-expanded", String(!aberto));
+  menu?.classList.toggle("aberto", !aberto);
+});
+
+menu?.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", () => {
+    botaoMenu?.setAttribute("aria-expanded", "false");
+    menu.classList.remove("aberto");
+  });
+});
