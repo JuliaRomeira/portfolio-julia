@@ -6,9 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Portfólio de Júlia Romeira: do suporte técnico ao desenvolvimento de software."
+      content="Portfólio de Júlia Romeira — projetos web que transformam necessidades reais em soluções claras."
     />
-    <title>Júlia Romeira | Desenvolvimento de Software</title>
+    <meta name="author" content="Júlia Romeira" />
+    <meta name="theme-color" content="#09090b" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://juliaromeira.github.io/portfolio-julia/" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Júlia Romeira" />
+    <meta property="og:title" content="Júlia Romeira | Desenvolvimento de Software" />
+    <meta property="og:description" content="Projetos web criados para transformar necessidades reais em soluções claras." />
+    <meta property="og:url" content="https://juliaromeira.github.io/portfolio-julia/" />
+    <meta property="og:image" content="https://juliaromeira.github.io/portfolio-julia/assets/social-preview.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Notebook em fundo escuro, prévia do portfólio de Júlia Romeira" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Júlia Romeira | Desenvolvimento de Software" />
+    <meta name="twitter:description" content="Projetos web criados para transformar necessidades reais em soluções claras." />
+    <meta name="twitter:image" content="https://juliaromeira.github.io/portfolio-julia/assets/social-preview.jpg" />
+    <meta name="twitter:image:alt" content="Notebook em fundo escuro, prévia do portfólio de Júlia Romeira" />
+    <title>Júlia Romeira | Projetos e Desenvolvimento de Software</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/favicon.svg" />
     <link rel="stylesheet" href="estilos.css" />
   </head>
 
@@ -29,10 +50,10 @@
           <a href="#projetos">Projetos</a>
           <a href="#experiencia">Experiência</a>
           <a href="#contato">Contato</a>
-          <a href="https://github.com/JuliaRomeira">GitHub ↗</a>
+          <a href="https://github.com/JuliaRomeira" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
         </nav>
 
-        <a class="botao botao-pequeno" href="https://www.linkedin.com/in/juliaromeira/">
+        <a class="botao botao-pequeno" href="https://www.linkedin.com/in/juliaromeira/" target="_blank" rel="noopener noreferrer">
           Vamos conversar <span aria-hidden="true">↗</span>
         </a>
       </div>
@@ -59,7 +80,7 @@
             <a class="botao" href="#projetos">
               Ver meus projetos <span aria-hidden="true">↗</span>
             </a>
-            <a class="link-secundario" href="https://www.linkedin.com/in/juliaromeira/">
+            <a class="link-secundario" href="https://www.linkedin.com/in/juliaromeira/" target="_blank" rel="noopener noreferrer">
               Conheça minha trajetória <span aria-hidden="true">↗</span>
             </a>
           </div>
@@ -95,8 +116,8 @@
             </ul>
 
             <div class="acoes">
-              <a class="botao" href="https://miraf-web.vercel.app/">Ver projeto <span aria-hidden="true">↗</span></a>
-              <a class="link-secundario" href="https://github.com/JuliaRomeira/miraf-web">Ver no GitHub <span aria-hidden="true">↗</span></a>
+              <a class="botao" href="https://miraf-web.vercel.app/" target="_blank" rel="noopener noreferrer">Ver projeto <span aria-hidden="true">↗</span></a>
+              <a class="link-secundario" href="https://github.com/JuliaRomeira/miraf-web" target="_blank" rel="noopener noreferrer">Ver no GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </div>
 
@@ -107,8 +128,12 @@
               <div class="notebook-viewport">
                 <img
                   class="mira-preview"
-                  src="assets/mira-interface.png"
+                  src="assets/mira-interface.webp"
                   alt="Interface real da Mira Distribuidora com catálogo e detalhes de produto"
+                  width="1536"
+                  height="1024"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
             </div>
@@ -140,6 +165,10 @@
             <p>Uma plataforma navegável para um negócio real, com descoberta de produtos e fluxo de cotação.</p>
           </article>
         </div>
+        <section class="minha-atuacao" data-project-role="mira" aria-labelledby="atuacao-mira">
+          <h3 class="etiqueta" id="atuacao-mira">Minha atuação</h3>
+          <p>Concebi e desenvolvi a plataforma, estruturando a descoberta de produtos, o fluxo de cotações e a base técnica com Next.js, Prisma e PostgreSQL.</p>
+        </section>
       </section>
 
       <section class="projeto projeto-leve container" id="leve-mp4" aria-labelledby="titulo-leve">
@@ -152,12 +181,14 @@
           <div class="smartphone-stage" aria-label="Leve MP4 sendo executado em um smartphone">
             <div class="smartphone">
               <span class="smartphone-ilha" aria-hidden="true"></span>
-              <iframe
-                src="https://juliaromeira.github.io/leve-mp4/?v=5e6b34a"
-                title="Prévia da aplicação Leve MP4 em um smartphone"
-                loading="lazy"
-                tabindex="-1"
-              ></iframe>
+              <div class="smartphone-viewport">
+                <iframe
+                  src="https://juliaromeira.github.io/leve-mp4/?v=5e6b34a"
+                  title="Prévia da aplicação Leve MP4 em um smartphone"
+                  loading="lazy"
+                  tabindex="-1"
+                ></iframe>
+              </div>
               <span class="smartphone-home" aria-hidden="true"></span>
             </div>
             <small class="smartphone-legenda">Web app responsivo · processamento local</small>
@@ -179,8 +210,8 @@
             </ul>
 
             <div class="acoes">
-              <a class="botao" href="https://juliaromeira.github.io/leve-mp4/">Abrir aplicativo <span aria-hidden="true">↗</span></a>
-              <a class="link-secundario" href="https://github.com/JuliaRomeira/leve-mp4">Ver no GitHub <span aria-hidden="true">↗</span></a>
+              <a class="botao" href="https://juliaromeira.github.io/leve-mp4/" target="_blank" rel="noopener noreferrer">Abrir aplicativo <span aria-hidden="true">↗</span></a>
+              <a class="link-secundario" href="https://github.com/JuliaRomeira/leve-mp4" target="_blank" rel="noopener noreferrer">Ver no GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </div>
         </div>
@@ -208,7 +239,6 @@
           <p class="demo-resultado">71% menor neste teste.</p>
           <p class="demo-nota">Clipe sintético de 6 segundos, sem áudio. Compactação real em qualidade equilibrada, com redução de 720p para 480p. O resultado varia conforme o arquivo e as configurações; a redução de resolução também diminui os detalhes.</p>
         </div>
-
         <div class="case-grid" data-reveal aria-label="Resumo do case Leve MP4">
           <article>
             <small>Desafio</small>
@@ -223,6 +253,10 @@
             <p>Controle de qualidade, resolução e áudio, com progresso, prévia e download do MP4 final.</p>
           </article>
         </div>
+        <section class="minha-atuacao" data-project-role="leve" aria-labelledby="atuacao-leve">
+          <h3 class="etiqueta" id="atuacao-leve">Minha atuação</h3>
+          <p>Desenvolvi a aplicação de ponta a ponta: interface responsiva, escolhas de compactação e processamento local de vídeos no navegador.</p>
+        </section>
       </section>
 
       <section class="projeto projeto-base container" id="base-conhecimento" aria-labelledby="titulo-base">
@@ -251,8 +285,8 @@
             </ul>
 
             <div class="acoes">
-              <a class="botao" href="https://base-de-conhecimento-facil.netlify.app/">Ver projeto <span aria-hidden="true">↗</span></a>
-              <a class="link-secundario" href="https://github.com/JuliaRomeira/Base_de_conhecimentos">Ver no GitHub <span aria-hidden="true">↗</span></a>
+              <a class="botao" href="https://base-de-conhecimento-facil.netlify.app/" target="_blank" rel="noopener noreferrer">Ver projeto <span aria-hidden="true">↗</span></a>
+              <a class="link-secundario" href="https://github.com/JuliaRomeira/Base_de_conhecimentos" target="_blank" rel="noopener noreferrer">Ver no GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </div>
         </div>
@@ -284,6 +318,10 @@
             <p>Portal público com busca, categorias, artigos relacionados e edição simplificada pela equipe.</p>
           </article>
         </div>
+        <section class="minha-atuacao" data-project-role="base" aria-labelledby="atuacao-base">
+          <h3 class="etiqueta" id="atuacao-base">Minha atuação</h3>
+          <p>Estruturei a experiência do portal e o fluxo de conteúdo em Markdown, incluindo busca, categorias e administração pelo Decap CMS.</p>
+        </section>
       </section>
 
       <section class="experiencia container" id="experiencia" aria-labelledby="titulo-experiencia">
@@ -357,8 +395,8 @@
           </p>
           <div class="acoes">
             <a class="botao" href="mailto:juliaromeralage@gmail.com">Enviar e-mail <span aria-hidden="true">↗</span></a>
-            <a class="link-secundario" href="https://www.linkedin.com/in/juliaromeira/">Ver no LinkedIn <span aria-hidden="true">↗</span></a>
-            <a class="link-secundario" href="https://github.com/JuliaRomeira">Acompanhar no GitHub <span aria-hidden="true">↗</span></a>
+            <a class="link-secundario" href="https://www.linkedin.com/in/juliaromeira/" target="_blank" rel="noopener noreferrer">Ver no LinkedIn <span aria-hidden="true">↗</span></a>
+            <a class="link-secundario" href="https://github.com/JuliaRomeira" target="_blank" rel="noopener noreferrer">Acompanhar no GitHub <span aria-hidden="true">↗</span></a>
           </div>
         </div>
 

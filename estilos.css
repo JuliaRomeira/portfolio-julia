@@ -3,7 +3,7 @@
   color-scheme: dark;
   --cor-fundo: #09090b;
   --cor-texto: #f0f0f2;
-  --cor-suave: #a3a3ab;
+  --cor-suave: #b5b5bd;
   --cor-borda: #27272d;
   --cor-destaque: #efeee9;
 }
@@ -18,6 +18,7 @@ body {
   background: var(--cor-fundo);
   color: var(--cor-texto);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  line-height: 1.5;
 }
 
 a {
@@ -25,7 +26,9 @@ a {
   text-decoration: none;
 }
 
-a:focus-visible {
+a:focus-visible,
+button:focus-visible,
+video:focus-visible {
   outline: 2px solid var(--cor-destaque);
   outline-offset: 6px;
 }
@@ -260,14 +263,9 @@ h2 {
 }
 
 .notebook {
-  --angulo-tela: -26deg;
-  --escala-tela: 0.985;
-  --opacidade-interface: 0.72;
-  --elevacao-tela: 12px;
-  --opacidade-dica: 1;
   position: relative;
   padding: 44px 16px 62px;
-  perspective: 1800px;
+  will-change: transform;
 }
 
 .notebook-tela {
@@ -278,10 +276,6 @@ h2 {
   border-radius: 7px;
   background: #1d1d21;
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.36);
-  backface-visibility: hidden;
-  transform: translateY(var(--elevacao-tela)) rotateX(var(--angulo-tela)) scale(var(--escala-tela));
-  transform-origin: center bottom;
-  will-change: transform;
 }
 
 .mockup-barra {
@@ -301,8 +295,7 @@ h2 {
   overflow: hidden;
   min-height: 342px;
   background: #f4f6f9;
-  opacity: var(--opacidade-interface);
-  transition: opacity 120ms linear;
+  opacity: 1;
 }
 
 .mira-preview {
@@ -336,16 +329,7 @@ h2 {
 }
 
 .notebook-dica {
-  position: absolute;
-  right: 16px;
-  bottom: 3px;
-  margin: 0;
-  color: #6f6f76;
-  font-size: 9px;
-  letter-spacing: 1.4px;
-  text-transform: uppercase;
-  opacity: var(--opacidade-dica);
-  transition: opacity 160ms linear;
+  display: none;
 }
 
 .projeto-leve {
@@ -354,7 +338,8 @@ h2 {
 }
 
 .projeto-conteudo-invertido {
-  grid-template-columns: 1.18fr 0.82fr;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
+  gap: clamp(56px, 7vw, 96px);
 }
 
 .aplicativo-barra {
@@ -387,28 +372,37 @@ h2 {
   display: grid;
   place-items: center;
   gap: 24px;
-  min-height: 730px;
-  padding-block: 30px;
+  min-height: 660px;
+  padding-block: 20px;
 }
 
 .smartphone {
   position: relative;
-  width: min(340px, 100%);
-  padding: 11px;
+  width: min(304px, 100%);
+  padding: 10px;
   border: 2px solid #55555c;
   border-radius: 50px;
   background: #050506;
   box-shadow: 0 35px 80px rgba(0, 0, 0, 0.55), inset 0 0 0 2px #1d1d20;
 }
 
+.smartphone-viewport {
+  --escala-app: 0.96;
+  height: 568px;
+  overflow: hidden;
+  border-radius: 39px;
+  background: #f7f6fa;
+}
+
 .smartphone iframe {
   display: block;
-  width: 100%;
-  height: 650px;
+  width: calc(100% / var(--escala-app) + 12px);
+  height: calc(100% / var(--escala-app));
   border: 0;
-  border-radius: 39px;
-  background: #101114;
+  background: #f7f6fa;
   pointer-events: none;
+  transform: translateY(30px) scale(var(--escala-app));
+  transform-origin: top left;
 }
 
 .smartphone-ilha {
@@ -536,7 +530,7 @@ h2 {
 
 .case-grid p {
   margin: 62px 0 0;
-  color: #b6b6bd;
+  color: #c6c6cd;
   font-size: 14px;
   line-height: 1.65;
 }
@@ -713,6 +707,26 @@ h2 {
   transition: opacity 650ms ease, translate 750ms cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
+.minha-atuacao {
+  max-width: 760px;
+  margin-top: 40px;
+  padding: 28px 0 0;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.minha-atuacao .etiqueta {
+  margin-bottom: 12px;
+  font-weight: 400;
+}
+
+.minha-atuacao > p {
+  max-width: 660px;
+  margin: 0;
+  color: #c6c6cd;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
 .revelacao-pendente {
   opacity: 0;
   translate: 0 24px;
@@ -755,11 +769,7 @@ html {
     transition: none;
   }
   .notebook {
-    --angulo-tela: 0deg !important;
-    --escala-tela: 1 !important;
-    --opacidade-interface: 1 !important;
-    --elevacao-tela: 0px !important;
-    --opacidade-dica: 0 !important;
+    transform: none !important;
   }
 
   .notebook-dica {
@@ -897,7 +907,7 @@ html {
     width: min(320px, 100%);
   }
 
-  .smartphone iframe {
+  .smartphone-viewport {
     height: min(590px, 165vw);
   }
 

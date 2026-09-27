@@ -4,6 +4,18 @@ const smartphone = document.querySelector(".smartphone");
 const palcoSmartphone = document.querySelector(".smartphone-stage");
 const telaPequena = window.matchMedia("(max-width: 760px)");
 
+const projetos = {
+  mira: "Concebi e desenvolvi a plataforma, estruturando a descoberta de produtos, o fluxo de cotações e a base técnica com Next.js, Prisma e PostgreSQL.",
+  leve: "Desenvolvi a aplicação de ponta a ponta: interface responsiva, escolhas de compactação e processamento local de vídeos no navegador.",
+  base: "Estruturei a experiência do portal e o fluxo de conteúdo em Markdown, incluindo busca, categorias e administração pelo Decap CMS.",
+};
+
+document.querySelectorAll("[data-project-role]").forEach((bloco) => {
+  const texto = projetos[bloco.dataset.projectRole];
+  const paragrafo = bloco.querySelector("p");
+  if (texto && paragrafo) paragrafo.textContent = texto;
+});
+
 // A posição do palco é estável: o movimento do telefone não altera o cálculo.
 function atualizarSmartphone() {
   if (!smartphone || !palcoSmartphone) return;
@@ -26,32 +38,16 @@ function limitar(valor, minimo, maximo) {
 function atualizarNotebook() {
   if (!notebook) return;
   if (reduzMovimento.matches) {
-    notebook.style.removeProperty("--angulo-tela");
-    notebook.style.removeProperty("--escala-tela");
-    notebook.style.removeProperty("--opacidade-interface");
-    notebook.style.removeProperty("--elevacao-tela");
-    notebook.style.removeProperty("--opacidade-dica");
+    notebook.style.removeProperty("transform");
     return;
   }
 
-  const posicao = notebook.getBoundingClientRect();
-  const inicio = window.innerHeight * 0.9;
-  const fim = window.innerHeight * 0.42;
-  const progresso = limitar((inicio - posicao.top) / (inicio - fim), 0, 1);
-  const suavizado = 1 - Math.pow(1 - progresso, 3);
-  const anguloInicial = telaPequena.matches ? -6 : -26;
-
-  const angulo = anguloInicial * (1 - suavizado);
-  const escala = 0.985 + suavizado * 0.015;
-  const opacidade = 0.72 + suavizado * 0.28;
-  const elevacao = (1 - suavizado) * (telaPequena.matches ? 6 : 12);
-  const opacidadeDica = limitar(1 - progresso * 1.7, 0, 1);
-
-  notebook.style.setProperty("--angulo-tela", `${angulo}deg`);
-  notebook.style.setProperty("--escala-tela", escala);
-  notebook.style.setProperty("--opacidade-interface", opacidade);
-  notebook.style.setProperty("--elevacao-tela", `${elevacao}px`);
-  notebook.style.setProperty("--opacidade-dica", opacidadeDica);
+  const topo = notebook.getBoundingClientRect().top;
+  const progresso = limitar((innerHeight * 0.95 - topo) / (innerHeight * 0.65), 0, 1);
+  const restante = 1 - progresso;
+  const distancia = telaPequena.matches ? 16 : 32;
+  const angulo = telaPequena.matches ? 0 : -3;
+  notebook.style.transform = `translateY(${restante * distancia}px) rotate(${restante * angulo}deg)`;
 }
 
 let atualizacaoPendente = false;
