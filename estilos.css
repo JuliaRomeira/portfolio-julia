@@ -260,12 +260,14 @@ h2 {
 }
 
 .notebook {
-  --angulo-tela: -72deg;
-  --escala-tela: 0.92;
-  --opacidade-interface: 0.15;
+  --angulo-tela: -26deg;
+  --escala-tela: 0.985;
+  --opacidade-interface: 0.72;
+  --elevacao-tela: 12px;
+  --opacidade-dica: 1;
   position: relative;
   padding: 44px 16px 62px;
-  perspective: 1400px;
+  perspective: 1800px;
 }
 
 .notebook-tela {
@@ -276,7 +278,8 @@ h2 {
   border-radius: 7px;
   background: #1d1d21;
   box-shadow: 0 28px 80px rgba(0, 0, 0, 0.36);
-  transform: rotateX(var(--angulo-tela)) scale(var(--escala-tela));
+  backface-visibility: hidden;
+  transform: translateY(var(--elevacao-tela)) rotateX(var(--angulo-tela)) scale(var(--escala-tela));
   transform-origin: center bottom;
   will-change: transform;
 }
@@ -341,6 +344,8 @@ h2 {
   font-size: 9px;
   letter-spacing: 1.4px;
   text-transform: uppercase;
+  opacity: var(--opacidade-dica);
+  transition: opacity 160ms linear;
 }
 
 .projeto-leve {
@@ -753,6 +758,8 @@ html {
     --angulo-tela: 0deg !important;
     --escala-tela: 1 !important;
     --opacidade-interface: 1 !important;
+    --elevacao-tela: 0px !important;
+    --opacidade-dica: 0 !important;
   }
 
   .notebook-dica {

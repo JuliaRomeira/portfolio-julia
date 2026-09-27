@@ -24,20 +24,34 @@ function limitar(valor, minimo, maximo) {
 }
 
 function atualizarNotebook() {
-  if (!notebook || reduzMovimento.matches) return;
+  if (!notebook) return;
+  if (reduzMovimento.matches) {
+    notebook.style.removeProperty("--angulo-tela");
+    notebook.style.removeProperty("--escala-tela");
+    notebook.style.removeProperty("--opacidade-interface");
+    notebook.style.removeProperty("--elevacao-tela");
+    notebook.style.removeProperty("--opacidade-dica");
+    return;
+  }
 
   const posicao = notebook.getBoundingClientRect();
-  const inicio = window.innerHeight * 0.92;
-  const fim = window.innerHeight * 0.36;
+  const inicio = window.innerHeight * 0.9;
+  const fim = window.innerHeight * 0.42;
   const progresso = limitar((inicio - posicao.top) / (inicio - fim), 0, 1);
+  const suavizado = 1 - Math.pow(1 - progresso, 3);
+  const anguloInicial = telaPequena.matches ? -6 : -26;
 
-  const angulo = -72 + progresso * 72;
-  const escala = 0.92 + progresso * 0.08;
-  const opacidade = 0.15 + progresso * 0.85;
+  const angulo = anguloInicial * (1 - suavizado);
+  const escala = 0.985 + suavizado * 0.015;
+  const opacidade = 0.72 + suavizado * 0.28;
+  const elevacao = (1 - suavizado) * (telaPequena.matches ? 6 : 12);
+  const opacidadeDica = limitar(1 - progresso * 1.7, 0, 1);
 
   notebook.style.setProperty("--angulo-tela", `${angulo}deg`);
   notebook.style.setProperty("--escala-tela", escala);
   notebook.style.setProperty("--opacidade-interface", opacidade);
+  notebook.style.setProperty("--elevacao-tela", `${elevacao}px`);
+  notebook.style.setProperty("--opacidade-dica", opacidadeDica);
 }
 
 let atualizacaoPendente = false;
