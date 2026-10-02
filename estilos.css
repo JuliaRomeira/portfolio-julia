@@ -611,23 +611,26 @@ h2 {
 
 .cargo ul {
   display: grid;
-  gap: 16px;
-  margin: 30px 0 0;
+  gap: 18px;
+  margin: 28px 0 0;
   padding: 0;
   list-style: none;
 }
 
 .cargo li {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
   color: #b8b8bf;
   font-size: 15px;
+  line-height: 1.6;
 }
 
 .cargo li::before {
+  flex: 0 0 auto;
   width: 5px;
   height: 5px;
+  margin-top: 0.7em;
   border-radius: 50%;
   background: #73737b;
   content: "";
