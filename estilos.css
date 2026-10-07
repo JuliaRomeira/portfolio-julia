@@ -6,6 +6,7 @@
   --cor-suave: #b5b5bd;
   --cor-borda: #27272d;
   --cor-destaque: #efeee9;
+  --cor-editorial: #cdbfa5;
 }
 
 /* 2. A base define como o navegador calcula tamanhos e desenha a página. */
@@ -122,27 +123,27 @@ nav a:hover {
   color: var(--cor-texto);
 }
 
-/* 4. Composição centralizada: retrato, apresentação e ações. */
+/* 4. Texto e retrato lado a lado; uma coluna no celular. */
 .apresentacao {
   position: relative;
   isolation: isolate;
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  justify-items: center;
-  gap: 0;
-  padding-top: 22px;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: 32px;
+  padding-top: 48px;
   padding-bottom: 48px;
-  text-align: center;
+  text-align: left;
 }
 
 .apresentacao-texto { width: 100%; }
 .apresentacao .etiqueta { margin-bottom: 16px; font-size: 10px; letter-spacing: 2px; }
-.apresentacao .descricao { max-width: 550px; margin-inline: auto; }
-.apresentacao .acoes { justify-content: center; gap: 14px; margin-top: 26px; }
+.apresentacao .descricao { max-width: 550px; }
+.apresentacao .acoes { justify-content: flex-start; gap: 14px; margin-top: 26px; }
 .apresentacao .botao { min-height: 50px; padding-inline: 24px; }
 .apresentacao .botao-contorno { background: transparent; color: var(--cor-texto); border: 1px solid #626268; }
 .apresentacao .botao-contorno:hover { background: #ffffff0c; }
-.apresentacao .retrato-hero { order: -1; width: 240px; height: 220px; margin-bottom: 12px; }
+.apresentacao .retrato-hero { width: 100%; height: 420px; margin: 0; }
 
 .apresentacao h1 {
   margin-bottom: 22px;
@@ -313,7 +314,7 @@ h1 span {
 
 /* 7. Projeto em destaque: texto à esquerda, mockup à direita. */
 .projeto {
-  padding-block: 132px;
+  padding-block: 76px;
 }
 
 .projetos-indice + .projeto {
@@ -324,9 +325,12 @@ h1 span {
   display: flex;
   justify-content: space-between;
   gap: 24px;
-  padding-bottom: 28px;
+  align-items: baseline;
+  padding-bottom: 20px;
   border-bottom: 1px solid var(--cor-borda);
 }
+
+.projeto-cabecalho .etiqueta { margin: 0; color: var(--cor-editorial); }
 
 .projeto-tipo {
   margin: 0;
@@ -336,19 +340,22 @@ h1 span {
 
 .projeto-conteudo {
   display: grid;
-  grid-template-columns: 0.82fr 1.18fr;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
   align-items: center;
-  gap: 72px;
-  padding-top: 64px;
+  gap: 48px;
+  padding-top: 40px;
 }
 
 h2 {
   margin: 0 0 28px;
-  font-size: clamp(48px, 5.4vw, 72px);
-  font-weight: 500;
-  line-height: 0.98;
-  letter-spacing: -3px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(38px, 4.4vw, 60px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
 }
+
+h2 em { color: var(--cor-editorial); font-weight: 400; }
 
 .projeto-descricao {
   max-width: 390px;
@@ -459,7 +466,7 @@ h2 {
 
 .projeto-leve {
   padding-top: 40px;
-  padding-bottom: 140px;
+  padding-bottom: 76px;
 }
 
 .projeto-conteudo-invertido {
@@ -497,7 +504,7 @@ h2 {
   display: grid;
   place-items: center;
   gap: 24px;
-  min-height: 660px;
+  min-height: 0;
   padding-block: 20px;
 }
 
@@ -568,9 +575,9 @@ h2 {
 
 .base-intro {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 72px;
-  padding-block: 72px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 48px;
+  padding-block: 40px;
 }
 
 .status-projeto {
@@ -633,28 +640,27 @@ h2 {
 
 .case-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: 56px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 32px;
   border-top: 1px solid var(--cor-borda);
   border-left: 1px solid var(--cor-borda);
 }
 
 .case-grid article {
-  min-height: 190px;
-  padding: 26px;
+  padding: 24px;
   border-right: 1px solid var(--cor-borda);
   border-bottom: 1px solid var(--cor-borda);
 }
 
 .case-grid small {
-  color: #707078;
+  color: var(--cor-editorial);
   font-size: 10px;
   letter-spacing: 1.4px;
   text-transform: uppercase;
 }
 
 .case-grid p {
-  margin: 44px 0 0;
+  margin: 20px 0 0;
   color: #c6c6cd;
   font-size: 15px;
   line-height: 1.65;
@@ -663,7 +669,7 @@ h2 {
 .experiencia,
 .stack,
 .contato {
-  padding-block: 104px;
+  padding-block: 76px;
   border-top: 1px solid var(--cor-borda);
 }
 
@@ -676,6 +682,7 @@ h2 {
 
 .secao-cabecalho .etiqueta {
   margin: 0;
+  color: var(--cor-editorial);
 }
 
 .secao-cabecalho > span {
@@ -685,15 +692,13 @@ h2 {
 
 .experiencia-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 48px;
 }
 
 .cargo {
-  padding: 34px;
-  border: 1px solid #33333a;
-  border-radius: 8px;
-  background: linear-gradient(145deg, #18181c, #0d0d0f);
+  padding: 8px 0 8px 28px;
+  border-left: 1px solid var(--cor-editorial);
 }
 
 .cargo-topo {
@@ -747,10 +752,10 @@ h2 {
 
 .experiencia blockquote {
   max-width: 900px;
-  margin: 96px auto 0;
-  color: #d5d5d9;
+  margin: 56px auto 0;
+  color: var(--cor-editorial);
   font-family: Georgia, serif;
-  font-size: clamp(34px, 5vw, 68px);
+  font-size: clamp(28px, 3.5vw, 44px);
   font-style: italic;
   line-height: 1.14;
   letter-spacing: -2px;
@@ -759,7 +764,7 @@ h2 {
 
 .stack-titulo {
   display: grid;
-  grid-template-columns: 1fr 0.7fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr);
   align-items: end;
   gap: 64px;
   margin-bottom: 56px;
@@ -797,16 +802,16 @@ h2 {
 
 .stack-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  grid-template-columns: 1fr;
   border-top: 1px solid var(--cor-borda);
-  border-left: 1px solid var(--cor-borda);
 }
 
 .stack-grid article {
   display: grid;
-  min-height: 172px;
-  padding: 25px;
-  border-right: 1px solid var(--cor-borda);
+  grid-template-columns: minmax(100px, 0.5fr) minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+  padding: 24px 8px;
   border-bottom: 1px solid var(--cor-borda);
   transition: background 250ms ease;
 }
@@ -817,16 +822,14 @@ h2 {
 
 .stack-grid span,
 .stack-grid small {
-  color: #6f6f77;
-  font-size: 11px;
+  color: var(--cor-suave);
+  font-size: 13px;
 }
 
 .stack-grid strong {
-  align-self: end;
-  margin-bottom: 8px;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 500;
-  letter-spacing: -1px;
+  letter-spacing: -0.4px;
 }
 
 .contato {
@@ -836,10 +839,36 @@ h2 {
 }
 
 .contato h2 {
-  font-size: clamp(72px, 11vw, 150px);
-  line-height: 0.84;
-  letter-spacing: -7px;
+  font-size: clamp(44px, 6vw, 80px);
+  line-height: 1.08;
+  letter-spacing: -0.05em;
 }
+
+.contato > div { text-align: center; }
+.contato > div > .etiqueta { color: var(--cor-editorial); }
+.contato .descricao { margin-inline: auto; }
+.contato .acoes { justify-content: center; }
+
+.case-detalhes { margin-top: 32px; border-block: 1px solid var(--cor-borda); }
+.case-detalhes summary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 72px;
+  padding: 18px 4px;
+  list-style: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+.case-detalhes summary::-webkit-details-marker { display: none; }
+.case-detalhes summary span { color: var(--cor-suave); font-size: 12px; }
+.case-detalhes summary::after { content: "+"; margin-left: auto; font-size: 24px; color: var(--cor-editorial); }
+.case-detalhes[open] summary::after { content: "−"; }
+.case-detalhes[open] { padding-bottom: 24px; }
+.case-detalhes .projeto-percurso, .case-detalhes .demonstracao { margin-top: 0; padding-top: 20px; }
+.case-detalhes .case-grid { margin-top: 24px; }
+summary:focus-visible { outline: 2px solid var(--cor-editorial); outline-offset: 6px; }
+section[id] { scroll-margin-top: 24px; }
 
 .contato footer {
   display: flex;
@@ -870,14 +899,16 @@ h2 {
 }
 
 .minha-atuacao {
-  max-width: 760px;
-  margin-top: 40px;
-  padding: 28px 0 0;
-  border-top: 1px solid var(--cor-borda);
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+  padding: 0;
 }
 
 .minha-atuacao .etiqueta {
-  margin-bottom: 12px;
+  margin: 0;
+  color: var(--cor-editorial);
   font-weight: 400;
 }
 
@@ -1024,9 +1055,9 @@ html {
 
   .apresentacao {
     grid-template-columns: 1fr;
-    gap: 0;
+    gap: 24px;
     min-height: auto;
-    padding-top: 16px;
+    padding-top: 36px;
     padding-bottom: 32px;
   }
 
@@ -1034,7 +1065,7 @@ html {
   .apresentacao .etiqueta { font-size: 10px; letter-spacing: 1.3px; margin-bottom: 22px; }
   .apresentacao .acoes { gap: 14px 22px; }
   .hero-assinatura { margin-top: 24px; }
-  .apresentacao .retrato-hero { width: 200px; height: 185px; }
+  .apresentacao .retrato-hero { width: min(100%, 340px); height: auto; aspect-ratio: 1; }
   .projetos-indice { grid-template-columns: 1fr; }
   .projetos-indice a { padding: 18px 4px; }
   .projetos-indice a + a { border-left: 0; border-top: 1px solid var(--cor-borda); }
@@ -1052,7 +1083,7 @@ html {
   }
 
   .projeto {
-    padding-block: 90px;
+    padding-block: 48px;
   }
 
   .projeto-cabecalho,
@@ -1144,7 +1175,7 @@ html {
   .experiencia,
   .stack,
   .contato {
-    padding-block: 88px;
+    padding-block: 56px;
   }
 
   .secao-cabecalho,
@@ -1190,11 +1221,11 @@ html {
   }
 
   .experiencia blockquote {
-    margin-top: 90px;
+    margin-top: 48px;
   }
 
   .stack-grid article {
-    min-height: 160px;
+    min-height: auto;
     padding: 20px;
   }
 
@@ -1207,13 +1238,20 @@ html {
   }
 
   .contato h2 {
-    font-size: clamp(64px, 18vw, 100px);
-    letter-spacing: -4px;
+    font-size: clamp(42px, 10vw, 64px);
+    letter-spacing: -0.05em;
   }
 
   .contato footer {
     flex-direction: column;
   }
+
+  .case-detalhes summary { flex-wrap: wrap; gap: 6px 12px; }
+  .case-detalhes summary span { flex-basis: 100%; order: 1; }
+  .minha-atuacao { grid-template-columns: 1fr; gap: 10px; }
+  .stack-grid { grid-template-columns: 1fr; }
+  .stack-grid article { grid-template-columns: 1fr; gap: 8px; padding: 20px 4px; }
+  .cargo { padding: 4px 0 4px 20px; }
 }
 
 @media (max-width: 480px) {
