@@ -3,6 +3,8 @@ const reduzMovimento = window.matchMedia("(prefers-reduced-motion: reduce)");
 const smartphone = document.querySelector(".smartphone");
 const palcoSmartphone = document.querySelector(".smartphone-stage");
 const telaPequena = window.matchMedia("(max-width: 760px)");
+const apresentacao = document.querySelector(".apresentacao");
+const cursorPreciso = window.matchMedia("(hover: hover) and (pointer: fine)");
 
 const projetos = {
   mira: "Concebi e desenvolvi a plataforma, estruturando a descoberta de produtos, o fluxo de cotações e a base técnica com Next.js, Prisma e PostgreSQL.",
@@ -80,12 +82,16 @@ const observador = new IntersectionObserver(
     entradas.forEach((entrada) => {
       if (entrada.isIntersecting) {
         entrada.target.classList.remove("revelacao-pendente");
-        observador.unobserve(entrada.target);
+        elementosJaRevelados.add(entrada.target);
+      } else if (elementosJaRevelados.has(entrada.target)) {
+        entrada.target.classList.add("revelacao-pendente");
       }
     });
   },
   { threshold: 0, rootMargin: "0px 0px -32px 0px" }
 );
+
+const elementosJaRevelados = new WeakSet();
 
 elementosParaRevelar.forEach((elemento) => {
   elemento.classList.add("revelacao");
@@ -103,11 +109,29 @@ reduzMovimento.addEventListener("change", () => {
   solicitarAtualizacao();
 });
 
+if (apresentacao && cursorPreciso.matches && !reduzMovimento.matches) {
+  apresentacao.addEventListener("pointermove", (evento) => {
+    const area = apresentacao.getBoundingClientRect();
+    apresentacao.style.setProperty("--cursor-x", `${evento.clientX - area.left}px`);
+    apresentacao.style.setProperty("--cursor-y", `${evento.clientY - area.top}px`);
+    apresentacao.classList.add("cursor-ativa");
+  });
+
+  apresentacao.addEventListener("pointerleave", () => {
+    apresentacao.classList.remove("cursor-ativa");
+  });
+}
+
 const ano = document.querySelector("[data-year]");
 if (ano) ano.textContent = new Date().getFullYear();
 
 const botaoMenu = document.querySelector(".menu-toggle");
 const menu = document.querySelector("#menu-principal");
+
+function fecharMenu() {
+  botaoMenu?.setAttribute("aria-expanded", "false");
+  menu?.classList.remove("aberto");
+}
 
 botaoMenu?.addEventListener("click", () => {
   const aberto = botaoMenu.getAttribute("aria-expanded") === "true";
@@ -116,8 +140,16 @@ botaoMenu?.addEventListener("click", () => {
 });
 
 menu?.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => {
-    botaoMenu?.setAttribute("aria-expanded", "false");
-    menu.classList.remove("aberto");
-  });
+  link.addEventListener("click", fecharMenu);
+});
+
+document.addEventListener("keydown", (evento) => {
+  if (evento.key === "Escape" && menu?.classList.contains("aberto")) {
+    fecharMenu();
+    botaoMenu?.focus();
+  }
+});
+
+document.addEventListener("click", (evento) => {
+  if (!evento.target.closest(".navegacao")) fecharMenu();
 });

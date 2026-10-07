@@ -38,7 +38,7 @@
     <header class="cabecalho">
       <div class="container navegacao">
         <a class="marca" href="#inicio" aria-label="Júlia Danieli Romera Lage — início">
-          jr<span>.</span>
+          Júlia Romeira<span>.</span>
         </a>
 
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
@@ -53,21 +53,19 @@
           <a href="https://github.com/JuliaRomeira" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
         </nav>
 
-        <a class="botao botao-pequeno" href="https://www.linkedin.com/in/juliaromeira/" target="_blank" rel="noopener noreferrer">
-          Vamos conversar <span aria-hidden="true">↗</span>
-        </a>
       </div>
     </header>
 
     <!-- O main contém o conteúdo principal. Esta é a primeira seção do site. -->
     <main>
       <section class="container apresentacao" id="inicio" aria-labelledby="titulo">
+        <span class="cursor-orbita" aria-hidden="true"></span>
         <div class="apresentacao-texto">
-          <p class="etiqueta">Júlia Danieli Romera Lage · Desenvolvimento de Software</p>
+          <p class="etiqueta">Júlia Danieli Romera Lage</p>
 
           <h1 id="titulo">
-            Disciplina hoje.
-            <span>Soluções amanhã.</span>
+            Desenvolvimento
+            <span>de Software.</span>
           </h1>
 
           <p class="descricao">
@@ -79,18 +77,25 @@
             <a class="botao" href="#projetos">
               Ver meus projetos <span aria-hidden="true">↗</span>
             </a>
-            <a class="link-secundario" href="https://www.linkedin.com/in/juliaromeira/" target="_blank" rel="noopener noreferrer">
-              Conheça minha trajetória <span aria-hidden="true">↗</span>
+            <a class="botao botao-contorno" href="#contato">
+              Vamos conversar <span aria-hidden="true">↗</span>
             </a>
           </div>
+          <p class="hero-assinatura">Disciplina hoje. <span>Soluções amanhã.</span></p>
         </div>
 
         <!-- A foto original é preservada; o tratamento visual fica no CSS. -->
-        <figure class="retrato">
+        <figure class="retrato retrato-hero">
           <img src="assets/julia-romeira.jpg" alt="Retrato de Júlia Danieli Romera Lage" width="640" height="640" fetchpriority="high" />
         </figure>
 
       </section>
+
+      <nav class="container projetos-indice" aria-label="Explore os projetos">
+        <a href="#projetos"><span class="indice-numero">01</span><span><strong>Mira Distribuidora</strong><small>Catálogo e cotações</small></span><span aria-hidden="true">↗</span></a>
+        <a href="#leve-mp4"><span class="indice-numero">02</span><span><strong>Leve MP4</strong><small>Vídeos menores, no navegador</small></span><span aria-hidden="true">↗</span></a>
+        <a href="#base-conhecimento"><span class="indice-numero">03</span><span><strong>Base de Conhecimento</strong><small>Documentação e busca</small></span><span aria-hidden="true">↗</span></a>
+      </nav>
 
       <!-- Cada projeto terá uma seção própria. Começamos pela Mira, o case principal. -->
       <section class="projeto container" id="projetos" aria-labelledby="titulo-mira">

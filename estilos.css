@@ -41,21 +41,30 @@ video:focus-visible {
 
 /* 3. Flexbox distribui marca, navegação e botão na mesma linha. */
 .cabecalho {
-  border-bottom: 1px solid var(--cor-borda);
+  position: relative;
+  z-index: 5;
+  padding-top: 24px;
 }
 
 .navegacao {
-  display: flex;
-  justify-content: space-between;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: center;
   gap: 24px;
-  min-height: 88px;
+  width: min(350px, calc(100% - 36px));
+  min-height: 56px;
+  padding: 4px 20px;
+  border: 1px solid #39393f;
+  border-radius: 30px;
+  background: #111114;
+  box-shadow: 0 8px 32px #0003;
 }
 
 .marca {
-  font-size: 36px;
-  font-weight: 600;
-  letter-spacing: -3px;
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.5px;
 }
 
 .marca span {
@@ -63,12 +72,38 @@ video:focus-visible {
 }
 
 .menu-toggle {
-  display: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0;
+  cursor: pointer;
   border: 0;
   background: transparent;
   color: var(--cor-texto);
   font: inherit;
+  font-size: 13px;
 }
+
+.navegacao nav {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
+  padding: 12px 20px;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--cor-borda);
+  border-radius: 20px;
+  background: #111114;
+  box-shadow: 0 16px 40px #0006;
+}
+
+.navegacao nav.aberto { display: flex; }
+.navegacao nav a { min-height: 46px; }
+.menu-toggle span { transition: transform 200ms ease; }
+.menu-toggle[aria-expanded="true"] span { transform: rotate(45deg); }
 
 nav {
   display: flex;
@@ -87,14 +122,83 @@ nav a:hover {
   color: var(--cor-texto);
 }
 
-/* 4. Grid cria duas colunas: texto à esquerda e retrato à direita. */
+/* 4. Composição centralizada: retrato, apresentação e ações. */
 .apresentacao {
+  position: relative;
+  isolation: isolate;
   display: grid;
-  grid-template-columns: 1.4fr 0.85fr;
-  align-items: center;
-  gap: 56px;
-  padding-top: 100px;
-  padding-bottom: 32px;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: 0;
+  padding-top: 22px;
+  padding-bottom: 48px;
+  text-align: center;
+}
+
+.apresentacao-texto { width: 100%; }
+.apresentacao .etiqueta { margin-bottom: 16px; font-size: 10px; letter-spacing: 2px; }
+.apresentacao .descricao { max-width: 550px; margin-inline: auto; }
+.apresentacao .acoes { justify-content: center; gap: 14px; margin-top: 26px; }
+.apresentacao .botao { min-height: 50px; padding-inline: 24px; }
+.apresentacao .botao-contorno { background: transparent; color: var(--cor-texto); border: 1px solid #626268; }
+.apresentacao .botao-contorno:hover { background: #ffffff0c; }
+.apresentacao .retrato-hero { order: -1; width: 240px; height: 220px; margin-bottom: 12px; }
+
+.apresentacao h1 {
+  margin-bottom: 22px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-style: italic;
+  color: #cdbfa5;
+  font-size: clamp(32px, 4.6vw, 56px);
+  letter-spacing: -0.05em;
+  line-height: 1.04;
+}
+
+.apresentacao h1 span {
+  color: var(--cor-texto);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: -0.045em;
+  font-size: 1.5em;
+  margin-top: 6px;
+}
+
+.hero-assinatura {
+  margin: 24px 0 0;
+  color: var(--cor-suave);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.hero-assinatura span { color: var(--cor-texto); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .apresentacao-texto { animation: entrada-hero 850ms ease both; }
+  .retrato-hero { animation: entrada-hero 1100ms 120ms ease both; }
+  @keyframes entrada-hero {
+    from { opacity: 0; translate: 0 18px; }
+    to { opacity: 1; translate: 0 0; }
+  }
+}
+
+.projetos-indice {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  border-block: 1px solid var(--cor-borda);
+}
+.projetos-indice a { display: flex; gap: 16px; padding: 24px 20px; min-width: 0; }
+.projetos-indice a + a { border-left: 1px solid var(--cor-borda); }
+.projetos-indice a:hover { background: #ffffff05; }
+.projetos-indice strong { display: block; color: var(--cor-texto); font-weight: 500; font-size: 14px; }
+.projetos-indice small { display: block; margin-top: 4px; font-size: 12px; }
+.projetos-indice .indice-numero { color: #cdbfa5; font-size: 11px; }
+.projetos-indice a > span:last-child { margin-left: auto; }
+
+.cursor-orbita {
+  display: none;
 }
 
 .etiqueta {
@@ -192,6 +296,11 @@ h1 span {
   /* O preto da foto se mistura ao fundo sem retângulo aparente. */
   filter: grayscale(1);
   mix-blend-mode: lighten;
+  /* Suaviza apenas as bordas; mantém o rosto e os detalhes nítidos. */
+  mask-image:
+    linear-gradient(to right, transparent, #000 12%, #000 88%, transparent),
+    linear-gradient(to bottom, transparent, #000 12%, #000 72%, transparent);
+  mask-composite: intersect;
 }
 
 .retrato::after {
@@ -207,7 +316,7 @@ h1 span {
   padding-block: 132px;
 }
 
-.apresentacao + .projeto {
+.projetos-indice + .projeto {
   padding-top: clamp(32px, 5vw, 64px);
 }
 
@@ -721,10 +830,9 @@ h2 {
 }
 
 .contato {
-  min-height: 90vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  padding-bottom: 32px;
 }
 
 .contato h2 {
@@ -737,7 +845,7 @@ h2 {
   display: flex;
   justify-content: space-between;
   gap: 24px;
-  margin-top: 130px;
+  margin-top: 64px;
   padding-top: 26px;
   border-top: 1px solid var(--cor-borda);
   color: #777780;
@@ -805,6 +913,28 @@ html {
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .apresentacao .cursor-orbita {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    display: block;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(240, 240, 242, 0.7);
+    border-radius: 50%;
+    background: rgba(240, 240, 242, 0.08);
+    box-shadow: 0 0 32px rgba(240, 240, 242, 0.12);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -50%) translate(var(--cursor-x, -80px), var(--cursor-y, -80px));
+    transition: opacity 180ms ease, transform 120ms ease-out;
+  }
+
+  .apresentacao.cursor-ativa .cursor-orbita {
+    opacity: 1;
+  }
+
   .botao:hover {
     transform: translateY(-2px);
   }
@@ -817,8 +947,12 @@ html {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
+  .apresentacao .cursor-orbita {
+    display: none;
+  }
+
   .smartphone, .botao, .link-secundario, nav a,
-  .botao span, .link-secundario span {
+  .botao span, .link-secundario span, .cursor-orbita {
     transform: none !important;
     transition: none;
   }
@@ -843,7 +977,7 @@ html {
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 14px;
-    padding-block: 18px;
+    padding: 4px 20px;
   }
 
   .menu-toggle {
@@ -870,7 +1004,7 @@ html {
     width: 100%;
     flex-direction: column;
     gap: 0;
-    padding-top: 10px;
+    padding: 12px 20px;
     border-top: 1px solid var(--cor-borda);
   }
 
@@ -890,9 +1024,20 @@ html {
 
   .apresentacao {
     grid-template-columns: 1fr;
-    gap: 36px;
-    padding-top: 54px;
+    gap: 0;
+    min-height: auto;
+    padding-top: 16px;
+    padding-bottom: 32px;
   }
+
+  .apresentacao h1 { font-size: clamp(29px, 7vw, 46px); }
+  .apresentacao .etiqueta { font-size: 10px; letter-spacing: 1.3px; margin-bottom: 22px; }
+  .apresentacao .acoes { gap: 14px 22px; }
+  .hero-assinatura { margin-top: 24px; }
+  .apresentacao .retrato-hero { width: 200px; height: 185px; }
+  .projetos-indice { grid-template-columns: 1fr; }
+  .projetos-indice a { padding: 18px 4px; }
+  .projetos-indice a + a { border-left: 0; border-top: 1px solid var(--cor-borda); }
 
   h1 {
     font-size: clamp(42px, 8.5vw, 64px);
@@ -1058,7 +1203,7 @@ html {
   }
 
   .contato {
-    min-height: 80vh;
+    padding-bottom: 28px;
   }
 
   .contato h2 {
