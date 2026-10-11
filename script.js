@@ -3,7 +3,7 @@ const reduzMovimento = window.matchMedia("(prefers-reduced-motion: reduce)");
 const smartphone = document.querySelector(".smartphone");
 const palcoSmartphone = document.querySelector(".smartphone-stage");
 const telaPequena = window.matchMedia("(max-width: 760px)");
-const apresentacao = document.querySelector(".apresentacao");
+const cursorOrbita = document.querySelector(".cursor-orbita");
 const cursorPreciso = window.matchMedia("(hover: hover) and (pointer: fine)");
 
 const projetos = {
@@ -109,17 +109,16 @@ reduzMovimento.addEventListener("change", () => {
   solicitarAtualizacao();
 });
 
-if (apresentacao && cursorPreciso.matches && !reduzMovimento.matches) {
-  apresentacao.addEventListener("pointermove", (evento) => {
-    const area = apresentacao.getBoundingClientRect();
-    apresentacao.style.setProperty("--cursor-x", `${evento.clientX - area.left}px`);
-    apresentacao.style.setProperty("--cursor-y", `${evento.clientY - area.top}px`);
-    apresentacao.classList.add("cursor-ativa");
+if (cursorOrbita && cursorPreciso.matches && !reduzMovimento.matches) {
+  document.documentElement.addEventListener("pointermove", (evento) => {
+    cursorOrbita.style.setProperty("--cursor-x", `${evento.clientX}px`);
+    cursorOrbita.style.setProperty("--cursor-y", `${evento.clientY}px`);
+    cursorOrbita.classList.add("cursor-ativa");
   });
 
-  apresentacao.addEventListener("pointerleave", () => {
-    apresentacao.classList.remove("cursor-ativa");
-  });
+  const ocultarCursor = () => cursorOrbita.classList.remove("cursor-ativa");
+  document.documentElement.addEventListener("pointerleave", ocultarCursor);
+  window.addEventListener("blur", ocultarCursor);
 }
 
 const ano = document.querySelector("[data-year]");

@@ -1035,11 +1035,11 @@ html {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .apresentacao .cursor-orbita {
-    position: absolute;
+  .cursor-orbita {
+    position: fixed;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 100;
     display: block;
     width: 42px;
     height: 42px;
@@ -1053,7 +1053,7 @@ html {
     transition: opacity 180ms ease, transform 120ms ease-out;
   }
 
-  .apresentacao.cursor-ativa .cursor-orbita {
+  .cursor-orbita.cursor-ativa {
     opacity: 1;
   }
 
@@ -1069,7 +1069,7 @@ html {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 
-  .apresentacao .cursor-orbita {
+  .cursor-orbita {
     display: none;
   }
 
