@@ -18,7 +18,8 @@ body {
   margin: 0;
   background: var(--cor-fundo);
   color: var(--cor-texto);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  font-family: "Manrope", sans-serif;
+  font-synthesis: none;
   line-height: 1.5;
 }
 
@@ -40,26 +41,25 @@ video:focus-visible {
   margin-inline: auto;
 }
 
-/* 3. Flexbox distribui marca, navegação e botão na mesma linha. */
+/* 3. A navegação acompanha a largura do conteúdo no desktop. */
 .cabecalho {
-  position: relative;
-  z-index: 5;
-  padding-top: 24px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgb(9 9 11 / 92%);
+  border-bottom: 1px solid var(--cor-borda);
+  backdrop-filter: blur(16px);
 }
 
 .navegacao {
   position: relative;
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
   align-items: center;
-  gap: 24px;
-  width: min(350px, calc(100% - 36px));
-  min-height: 56px;
-  padding: 4px 20px;
-  border: 1px solid #39393f;
-  border-radius: 30px;
-  background: #111114;
-  box-shadow: 0 8px 32px #0003;
+  justify-content: space-between;
+  gap: 32px;
+  width: min(1120px, 88%);
+  min-height: 64px;
+  padding: 0;
 }
 
 .marca {
@@ -72,43 +72,18 @@ video:focus-visible {
   color: var(--cor-suave);
 }
 
-.menu-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 44px;
-  padding: 0;
-  cursor: pointer;
-  border: 0;
-  background: transparent;
-  color: var(--cor-texto);
-  font: inherit;
-  font-size: 13px;
-}
-
 .navegacao nav {
-  display: none;
-  position: absolute;
-  top: calc(100% + 10px);
-  left: 0;
-  right: 0;
-  padding: 12px 20px;
-  flex-direction: column;
-  gap: 0;
-  border: 1px solid var(--cor-borda);
-  border-radius: 20px;
-  background: #111114;
-  box-shadow: 0 16px 40px #0006;
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 2.4vw, 32px);
 }
 
-.navegacao nav.aberto { display: flex; }
-.navegacao nav a { min-height: 46px; }
-.menu-toggle span { transition: transform 200ms ease; }
-.menu-toggle[aria-expanded="true"] span { transform: rotate(45deg); }
+.navegacao nav a { min-height: 64px; }
+.navegacao nav a:last-child { padding-left: clamp(18px, 2.4vw, 32px); border-left: 1px solid var(--cor-borda); }
 
 nav {
   display: flex;
-  gap: 28px;
+  gap: 0;
 }
 
 nav a {
@@ -121,6 +96,22 @@ nav a {
 
 nav a:hover {
   color: var(--cor-texto);
+}
+
+.navegacao nav a[aria-current="page"] { color: var(--cor-texto); }
+
+@media (hover: hover) {
+  .navegacao nav a:not(:last-child)::after {
+    width: 0;
+    height: 1px;
+    margin-left: 8px;
+    background: var(--cor-editorial);
+    content: "";
+    transition: width 180ms ease;
+  }
+
+  .navegacao nav a:not(:last-child):hover::after { width: 12px; }
+  .navegacao nav a[aria-current="page"]::after { width: 12px; }
 }
 
 /* 4. Texto e retrato lado a lado; uma coluna no celular. */
@@ -137,7 +128,7 @@ nav a:hover {
 }
 
 .apresentacao-texto { width: 100%; }
-.apresentacao .etiqueta { margin-bottom: 16px; font-size: 10px; letter-spacing: 2px; }
+.apresentacao .etiqueta { margin-bottom: 16px; font-size: 10px; letter-spacing: 0.08em; }
 .apresentacao .descricao { max-width: 550px; }
 .apresentacao .acoes { justify-content: flex-start; gap: 14px; margin-top: 26px; }
 .apresentacao .botao { min-height: 50px; padding-inline: 24px; }
@@ -147,20 +138,20 @@ nav a:hover {
 
 .apresentacao h1 {
   margin-bottom: 22px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: 400;
-  font-style: italic;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  font-style: normal;
   color: #cdbfa5;
   font-size: clamp(32px, 4.6vw, 56px);
-  letter-spacing: -0.05em;
-  line-height: 1.04;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
 }
 
 .apresentacao h1 span {
   color: var(--cor-texto);
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: 400;
-  font-style: normal;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  font-style: italic;
   letter-spacing: -0.045em;
   font-size: 1.5em;
   margin-top: 6px;
@@ -205,9 +196,10 @@ nav a:hover {
 .etiqueta {
   margin: 0 0 28px;
   color: var(--cor-suave);
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.8;
-  letter-spacing: 1.8px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -346,16 +338,38 @@ h1 span {
   padding-top: 40px;
 }
 
-h2 {
-  margin: 0 0 28px;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(38px, 4.4vw, 60px);
-  font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: -0.045em;
+.projeto-copy { grid-area: copy; }
+.projeto-apoio { grid-area: apoio; }
+
+.projeto-mira-conteudo {
+  grid-template-areas:
+    "copy mockup"
+    "apoio mockup";
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: 28px clamp(48px, 7vw, 96px);
 }
 
-h2 em { color: var(--cor-editorial); font-weight: 400; }
+.projeto-mira .notebook {
+  grid-area: mockup;
+  align-self: center;
+}
+
+.projeto-mira .notebook-tela { min-height: clamp(390px, 36vw, 510px); }
+.projeto-mira .notebook-viewport { min-height: clamp(336px, 31vw, 456px); }
+.projeto-mira .mira-preview { height: clamp(336px, 31vw, 456px); }
+.projeto-mira .tecnologias { margin-top: 0; }
+.projeto-mira .acoes { margin-top: 22px; }
+
+h2 {
+  margin: 0 0 28px;
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(38px, 4.4vw, 60px);
+  font-weight: 600;
+  line-height: 1.03;
+  letter-spacing: -0.035em;
+}
+
+h2 em { color: var(--cor-editorial); font-weight: 600; font-style: italic; }
 
 .projeto-descricao {
   max-width: 390px;
@@ -380,12 +394,24 @@ h2 em { color: var(--cor-editorial); font-weight: 400; }
 
 .notebook {
   position: relative;
+  isolation: isolate;
   padding: 44px 16px 62px;
   will-change: transform;
 }
 
+.projeto-mira .notebook::before {
+  position: absolute;
+  z-index: 0;
+  inset: 12% 0 18%;
+  border-radius: 40px;
+  background: radial-gradient(circle at 15% 20%, rgb(211 49 63 / 22%), transparent 38%), radial-gradient(circle at 85% 30%, rgb(23 94 181 / 24%), transparent 44%);
+  filter: blur(22px);
+  content: "";
+}
+
 .notebook-tela {
   position: relative;
+  z-index: 1;
   overflow: hidden;
   min-height: 400px;
   padding: 9px;
@@ -440,6 +466,7 @@ h2 em { color: var(--cor-editorial); font-weight: 400; }
 
 .notebook-base {
   position: absolute;
+  z-index: 1;
   right: -4px;
   bottom: 48px;
   left: -4px;
@@ -465,14 +492,20 @@ h2 em { color: var(--cor-editorial); font-weight: 400; }
 }
 
 .projeto-leve {
-  padding-top: 40px;
-  padding-bottom: 76px;
+  padding-block: clamp(88px, 11vw, 144px);
 }
 
 .projeto-conteudo-invertido {
-  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.9fr);
-  gap: clamp(56px, 7vw, 96px);
+  grid-template-areas:
+    "mockup copy"
+    "mockup apoio";
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr);
+  gap: 28px clamp(56px, 8vw, 112px);
 }
+
+.projeto-leve .smartphone-stage { grid-area: mockup; }
+.projeto-leve .tecnologias { margin-top: 0; }
+.projeto-leve .acoes { margin-top: 22px; }
 
 .aplicativo-barra {
   display: flex;
@@ -501,6 +534,8 @@ h2 em { color: var(--cor-editorial); font-weight: 400; }
 }
 
 .smartphone-stage {
+  position: relative;
+  isolation: isolate;
   display: grid;
   place-items: center;
   gap: 24px;
@@ -508,14 +543,26 @@ h2 em { color: var(--cor-editorial); font-weight: 400; }
   padding-block: 20px;
 }
 
+.projeto-leve .smartphone-stage::before {
+  position: absolute;
+  z-index: 0;
+  width: min(82%, 360px);
+  height: 54%;
+  border-radius: 50%;
+  background: rgb(161 129 214 / 14%);
+  filter: blur(42px);
+  content: "";
+}
+
 .smartphone {
   position: relative;
+  z-index: 1;
   width: min(304px, 100%);
   padding: 10px;
   border: 2px solid #55555c;
   border-radius: 50px;
   background: #050506;
-  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.55), inset 0 0 0 2px #1d1d20;
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.46), inset 0 0 0 2px #1d1d20;
 }
 
 .smartphone-viewport {
@@ -564,20 +611,21 @@ h2 em { color: var(--cor-editorial); font-weight: 400; }
 .smartphone-legenda {
   color: #73737b;
   font-size: 9px;
-  letter-spacing: 1.3px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .projeto-base {
-  padding-top: 40px;
-  padding-bottom: 96px;
+  padding-top: 48px;
+  padding-bottom: 112px;
 }
 
 .base-intro {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 48px;
-  padding-block: 40px;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(40px, 7vw, 96px);
+  padding-block: 48px 36px;
 }
 
 .status-projeto {
@@ -585,23 +633,24 @@ h2 em { color: var(--cor-editorial); font-weight: 400; }
   margin-bottom: 24px;
   color: #777780;
   font-size: 10px;
-  letter-spacing: 1.3px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .base-live {
   overflow: hidden;
-  min-height: 600px;
+  min-height: clamp(500px, 52vw, 680px);
   border: 1px solid #323238;
   border-radius: 12px;
   background: #17171b;
-  box-shadow: 0 32px 100px rgba(0, 0, 0, 0.42);
+  box-shadow: 0 32px 100px rgba(0, 0, 0, 0.42), inset 0 1px rgb(255 255 255 / 5%);
 }
 
 .base-live iframe {
   display: block;
   width: 100%;
-  height: 558px;
+  height: clamp(458px, 48vw, 638px);
   border: 0;
   background: #f5f7fa;
   pointer-events: none;
@@ -625,7 +674,7 @@ h2 em { color: var(--cor-editorial); font-weight: 400; }
 .percurso-etapas span { color: var(--cor-suave); font-size: 12px; }
 .percurso-etapas h3 { font-size: 22px; font-weight: 500; margin: 16px 0 10px; }
 .percurso-etapas p, .demo-nota { color: var(--cor-suave); font-size: 14px; line-height: 1.7; }
-.demonstracao h3 { font-size: clamp(26px, 4vw, 38px); font-weight: 500; margin: 0 0 16px; letter-spacing: -1px; }
+.demonstracao h3 { font-family: "Cormorant Garamond", serif; font-size: clamp(26px, 4vw, 38px); font-weight: 600; margin: 0 0 16px; letter-spacing: -0.03em; line-height: 1.08; }
 .demo-videos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 24px; }
 .demo-videos figure { margin: 0; min-width: 0; }
 .demo-videos video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #17171b; border-radius: 8px; }
@@ -655,7 +704,8 @@ h2 em { color: var(--cor-editorial); font-weight: 400; }
 .case-grid small {
   color: var(--cor-editorial);
   font-size: 10px;
-  letter-spacing: 1.4px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -713,7 +763,8 @@ h2 em { color: var(--cor-editorial); font-weight: 400; }
 .cargo-topo > span {
   color: #818189;
   font-size: 11px;
-  letter-spacing: 1px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -754,7 +805,7 @@ h2 em { color: var(--cor-editorial); font-weight: 400; }
   max-width: 900px;
   margin: 56px auto 0;
   color: var(--cor-editorial);
-  font-family: Georgia, serif;
+  font-family: "Cormorant Garamond", serif;
   font-size: clamp(28px, 3.5vw, 44px);
   font-style: italic;
   line-height: 1.14;
@@ -868,7 +919,7 @@ h2 em { color: var(--cor-editorial); font-weight: 400; }
 .case-detalhes .projeto-percurso, .case-detalhes .demonstracao { margin-top: 0; padding-top: 20px; }
 .case-detalhes .case-grid { margin-top: 24px; }
 summary:focus-visible { outline: 2px solid var(--cor-editorial); outline-offset: 6px; }
-section[id] { scroll-margin-top: 24px; }
+section[id] { scroll-margin-top: 88px; }
 
 .contato footer {
   display: flex;
@@ -909,7 +960,7 @@ section[id] { scroll-margin-top: 24px; }
 .minha-atuacao .etiqueta {
   margin: 0;
   color: var(--cor-editorial);
-  font-weight: 400;
+  font-weight: 600;
 }
 
 .minha-atuacao > p {
@@ -1005,52 +1056,32 @@ html {
 /* 8. Em telas menores, a apresentação passa a ter apenas uma coluna. */
 @media (max-width: 760px) {
   .navegacao {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 14px;
-    padding: 4px 20px;
+    width: min(100%, 480px);
+    min-height: 56px;
+    padding: 0 18px;
+    gap: 0;
+    justify-content: center;
   }
 
-  .menu-toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    min-height: 44px;
-    cursor: pointer;
-  }
-
-  .menu-toggle span {
-    font-size: 18px;
-    transition: transform 200ms ease;
-  }
-
-  .menu-toggle[aria-expanded="true"] span {
-    transform: rotate(45deg);
-  }
+  .marca { display: none; }
 
   .navegacao nav {
-    display: none;
-    order: 3;
-    grid-column: 1 / -1;
-    width: 100%;
-    flex-direction: column;
-    gap: 0;
-    padding: 12px 20px;
-    border-top: 1px solid var(--cor-borda);
-  }
-
-  .navegacao nav.aberto {
     display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 0;
   }
 
   .navegacao nav a {
-    width: 100%;
-    min-height: 48px;
-    border-bottom: 1px solid #1d1d21;
+    width: auto;
+    min-height: 56px;
+    font-size: 12px;
+    white-space: nowrap;
   }
 
-  .navegacao > .botao {
-    display: none;
+  .navegacao nav a:last-child {
+    padding-left: 0;
+    border-left: 0;
   }
 
   .apresentacao {
@@ -1062,7 +1093,7 @@ html {
   }
 
   .apresentacao h1 { font-size: clamp(29px, 7vw, 46px); }
-  .apresentacao .etiqueta { font-size: 10px; letter-spacing: 1.3px; margin-bottom: 22px; }
+  .apresentacao .etiqueta { font-size: 10px; letter-spacing: 0.08em; margin-bottom: 22px; }
   .apresentacao .acoes { gap: 14px 22px; }
   .hero-assinatura { margin-top: 24px; }
   .apresentacao .retrato-hero { width: min(100%, 340px); height: auto; aspect-ratio: 1; }
@@ -1100,6 +1131,28 @@ html {
     padding-top: 48px;
   }
 
+  .projeto-mira-conteudo,
+  .projeto-conteudo-invertido {
+    grid-template-areas:
+      "copy"
+      "mockup"
+      "apoio";
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .projeto-mira .notebook {
+    padding: 12px 0 42px;
+  }
+
+  .projeto-mira .notebook::before {
+    inset: 4% -8% 16%;
+  }
+
+  .projeto-mira .notebook-tela { min-height: 310px; }
+  .projeto-mira .notebook-viewport { min-height: 252px; }
+  .projeto-mira .mira-preview { height: 252px; }
+
   h2 {
     letter-spacing: -2px;
   }
@@ -1120,17 +1173,11 @@ html {
     height: 252px;
   }
 
-  .projeto-leve {
-    padding-bottom: 100px;
-  }
-
-  .projeto-leve-texto {
-    order: -1;
-  }
+  .projeto-leve { padding-block: 72px; }
 
   .smartphone-stage {
     min-height: auto;
-    padding: 20px 0 4px;
+    padding: 12px 0 4px;
   }
 
   .smartphone {
@@ -1148,7 +1195,7 @@ html {
   .base-intro {
     grid-template-columns: 1fr;
     gap: 30px;
-    padding-block: 52px;
+    padding-block: 44px 32px;
   }
 
   .base-live {

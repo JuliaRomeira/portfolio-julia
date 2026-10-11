@@ -30,6 +30,9 @@
     <title>Júlia Danieli Romera Lage | Desenvolvimento de Software</title>
     <link rel="icon" href="assets/favicon.svg?v=jr2" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="assets/favicon.svg?v=jr2" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&family=Manrope:wght@400;500;600;700&display=optional" rel="stylesheet" />
     <link rel="stylesheet" href="estilos.css" />
   </head>
 
@@ -40,10 +43,6 @@
         <a class="marca" href="#inicio" aria-label="Júlia Danieli Romera Lage — início">
           Júlia Romeira<span>.</span>
         </a>
-
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
-          Menu <span aria-hidden="true">＋</span>
-        </button>
 
         <nav id="menu-principal" aria-label="Navegação principal">
           <a href="#inicio">Início</a>
@@ -64,8 +63,8 @@
           <p class="etiqueta">Júlia Danieli Romera Lage</p>
 
           <h1 id="titulo">
-            Desenvolvimento
-            <span>de Software.</span>
+            Desenvolvedora
+            <span>de Software</span>
           </h1>
 
           <p class="descricao">
@@ -81,7 +80,7 @@
               Vamos conversar <span aria-hidden="true">↗</span>
             </a>
           </div>
-          <p class="hero-assinatura">Disciplina hoje. <span>Soluções amanhã.</span></p>
+          <p class="hero-assinatura">Disciplina hoje <span>· Soluções amanhã</span></p>
         </div>
 
         <!-- A foto original é preservada; o tratamento visual fica no CSS. -->
@@ -98,31 +97,18 @@
       </nav>
 
       <!-- Cada projeto terá uma seção própria. Começamos pela Mira, o case principal. -->
-      <section class="projeto container" id="projetos" aria-labelledby="titulo-mira">
+      <section class="projeto projeto-mira container" id="projetos" aria-labelledby="titulo-mira">
         <div class="projeto-cabecalho">
-          <p class="etiqueta">01 / Projeto em destaque</p>
-          <p class="projeto-tipo">Catálogo e cotações para um negócio real.</p>
+          <p class="etiqueta">01 / Mira Distribuidora</p>
+          <p class="projeto-tipo">Catálogo e cotações</p>
         </div>
 
-        <div class="projeto-conteudo">
-          <div>
-            <h2 id="titulo-mira">Mira<br /><em>Distribuidora.</em></h2>
+        <div class="projeto-conteudo projeto-mira-conteudo" data-reveal>
+          <div class="projeto-copy">
+            <h2 id="titulo-mira">Mira<br /><em>Distribuidora</em></h2>
             <p class="descricao projeto-descricao">
-              Uma plataforma para tornar a descoberta de produtos e o pedido de
-              cotações mais simples para clientes e para o negócio.
+              Catálogo e cotações para simplificar a descoberta de produtos e os pedidos de orçamento
             </p>
-
-            <ul class="tecnologias" aria-label="Tecnologias usadas na Mira Distribuidora">
-              <li>Next.js</li>
-              <li>TypeScript</li>
-              <li>PostgreSQL</li>
-              <li>Prisma</li>
-            </ul>
-
-            <div class="acoes">
-              <a class="botao" href="https://miraf-web.vercel.app/" target="_blank" rel="noopener noreferrer">Ver projeto <span aria-hidden="true">↗</span></a>
-              <a class="link-secundario" href="https://github.com/JuliaRomeira/miraf-web" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-            </div>
           </div>
 
           <!-- O JavaScript altera o ângulo desta tela conforme a rolagem. -->
@@ -144,6 +130,20 @@
             </div>
             <div class="notebook-base" aria-hidden="true"><span></span></div>
             <p class="notebook-dica">Role para abrir</p>
+          </div>
+
+          <div class="projeto-apoio">
+            <ul class="tecnologias" aria-label="Tecnologias usadas na Mira Distribuidora">
+              <li>Next.js</li>
+              <li>TypeScript</li>
+              <li>PostgreSQL</li>
+              <li>Prisma</li>
+            </ul>
+
+            <div class="acoes">
+              <a class="botao" href="https://miraf-web.vercel.app/" target="_blank" rel="noopener noreferrer">Ver projeto <span aria-hidden="true">↗</span></a>
+              <a class="link-secundario" href="https://github.com/JuliaRomeira/miraf-web" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+            </div>
           </div>
         </div>
 
@@ -181,11 +181,18 @@
 
       <section class="projeto projeto-leve container" id="leve-mp4" aria-labelledby="titulo-leve">
         <div class="projeto-cabecalho">
-          <p class="etiqueta">02 / Aplicação web</p>
-          <p class="projeto-tipo">Compactação de vídeo direto no navegador.</p>
+          <p class="etiqueta">02 / Leve MP4</p>
+          <p class="projeto-tipo">Compactação de vídeo no navegador</p>
         </div>
 
         <div class="projeto-conteudo projeto-conteudo-invertido" data-reveal>
+          <div class="projeto-copy projeto-leve-copy">
+            <h2 id="titulo-leve">Leve <em>MP4</em></h2>
+            <p class="descricao projeto-descricao">
+              Compactação de vídeos diretamente no navegador, com processamento local e controle de qualidade
+            </p>
+          </div>
+
           <div class="smartphone-stage" aria-label="Leve MP4 sendo executado em um smartphone">
             <div class="smartphone">
               <span class="smartphone-ilha" aria-hidden="true"></span>
@@ -202,14 +209,7 @@
             <small class="smartphone-legenda">Web app responsivo · processamento local</small>
           </div>
 
-          <div class="projeto-leve-texto">
-            <h2 id="titulo-leve">Leve <em>MP4.</em></h2>
-            <p class="descricao projeto-descricao">
-              Aplicação web para reduzir o tamanho de vídeos diretamente no
-              navegador, com escolhas de qualidade e resolução. O processamento
-              acontece no próprio dispositivo, sem enviar arquivos a um servidor.
-            </p>
-
+          <div class="projeto-apoio projeto-leve-apoio">
             <ul class="tecnologias" aria-label="Tecnologias usadas no Leve MP4">
               <li>HTML</li>
               <li>CSS</li>
@@ -228,7 +228,7 @@
           <summary>Por dentro do Leve MP4 <span>Comparação em vídeo e decisões</span></summary>
         <div class="demonstracao" data-reveal aria-labelledby="titulo-demo-leve">
           <p class="etiqueta">Um teste real</p>
-          <h3 id="titulo-demo-leve">O mesmo clipe. Menos espaço.</h3>
+          <h3 id="titulo-demo-leve">O mesmo clipe · Menos espaço</h3>
           <p class="descricao">Compare o original e o arquivo gerado pelo Leve MP4. Dê play para observar o movimento e os detalhes.</p>
           <div class="demo-videos">
             <figure>
@@ -246,7 +246,7 @@
               <figcaption><strong>Depois · 812 KB</strong><span>854 × 480</span></figcaption>
             </figure>
           </div>
-          <p class="demo-resultado">71% menor neste teste.</p>
+          <p class="demo-resultado">71% menor neste teste</p>
           <p class="demo-nota">Clipe sintético de 6 segundos, sem áudio. Compactação real em qualidade equilibrada, com redução de 720p para 480p. O resultado varia conforme o arquivo e as configurações; a redução de resolução também diminui os detalhes.</p>
         </div>
         <div class="case-grid" data-reveal aria-label="Resumo do case Leve MP4">
@@ -272,20 +272,19 @@
 
       <section class="projeto projeto-base container" id="base-conhecimento" aria-labelledby="titulo-base">
         <div class="projeto-cabecalho">
-          <p class="etiqueta">03 / Documentação</p>
-          <p class="projeto-tipo">Conhecimento organizado para resolver dúvidas reais.</p>
+          <p class="etiqueta">03 / Base de Conhecimento</p>
+          <p class="projeto-tipo">Documentação e busca centralizada</p>
         </div>
 
         <div class="base-intro" data-reveal>
           <div>
             <span class="status-projeto">Publicado</span>
-            <h2 id="titulo-base">Base de<br /><em>Conhecimento.</em></h2>
+            <h2 id="titulo-base">Base de<br /><em>Conhecimento</em></h2>
           </div>
 
           <div>
             <p class="descricao projeto-descricao">
-              Um portal de documentação para clientes da Fácil Informática, com
-              manuais, busca rápida, categorias e conteúdo gerenciado em Markdown.
+              Portal de documentação com busca, categorias e conteúdo gerenciado em Markdown
             </p>
 
             <ul class="tecnologias" aria-label="Tecnologias usadas na Base de Conhecimento">
@@ -341,12 +340,12 @@
       <section class="experiencia container" id="experiencia" aria-labelledby="titulo-experiencia">
         <div class="secao-cabecalho">
           <p class="etiqueta">04 / Trajetória profissional</p>
-          <span>Suporte que se transforma em produto.</span>
+          <span>Suporte que se transforma em produto</span>
         </div>
 
         <div class="experiencia-grid" data-reveal>
           <div>
-            <h2 id="titulo-experiencia">Experiência<br /><em>que vira código.</em></h2>
+            <h2 id="titulo-experiencia">Experiência<br /><em>que vira código</em></h2>
             <p class="descricao">
               A proximidade com usuários e sistemas me ensinou a investigar antes
               de construir, documentar o que aprendo e transformar dificuldades
@@ -380,11 +379,11 @@
       <section class="stack container" id="tecnologias" aria-labelledby="titulo-tecnologias">
         <div class="secao-cabecalho">
           <p class="etiqueta">05 / Tecnologias</p>
-          <span>Ferramentas escolhidas pelo problema.</span>
+          <span>Ferramentas escolhidas pelo problema</span>
         </div>
 
         <div class="stack-titulo" data-reveal>
-          <h2 id="titulo-tecnologias">Do back-end<br /><em>à interface.</em></h2>
+          <h2 id="titulo-tecnologias">Do back-end<br /><em>à interface</em></h2>
           <p class="descricao">
             Uma base em Java e dados, combinada com tecnologias modernas para criar
             experiências web completas.

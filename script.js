@@ -125,31 +125,21 @@ if (apresentacao && cursorPreciso.matches && !reduzMovimento.matches) {
 const ano = document.querySelector("[data-year]");
 if (ano) ano.textContent = new Date().getFullYear();
 
-const botaoMenu = document.querySelector(".menu-toggle");
-const menu = document.querySelector("#menu-principal");
+const linksNavegacao = [...document.querySelectorAll('#menu-principal a[href^="#"]')];
+const secoesNavegacao = linksNavegacao
+  .map((link) => document.querySelector(link.getAttribute("href")))
+  .filter(Boolean);
 
-function fecharMenu() {
-  botaoMenu?.setAttribute("aria-expanded", "false");
-  menu?.classList.remove("aberto");
+function destacarSecao(secao) {
+  linksNavegacao.forEach((link) => {
+    const atual = link.getAttribute("href") === `#${secao.id}`;
+    link.toggleAttribute("aria-current", atual);
+  });
 }
 
-botaoMenu?.addEventListener("click", () => {
-  const aberto = botaoMenu.getAttribute("aria-expanded") === "true";
-  botaoMenu.setAttribute("aria-expanded", String(!aberto));
-  menu?.classList.toggle("aberto", !aberto);
-});
+const observadorNavegacao = new IntersectionObserver((entradas) => {
+  const secaoVisivel = entradas.find((entrada) => entrada.isIntersecting);
+  if (secaoVisivel) destacarSecao(secaoVisivel.target);
+}, { rootMargin: "-35% 0px -55%", threshold: 0 });
 
-menu?.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", fecharMenu);
-});
-
-document.addEventListener("keydown", (evento) => {
-  if (evento.key === "Escape" && menu?.classList.contains("aberto")) {
-    fecharMenu();
-    botaoMenu?.focus();
-  }
-});
-
-document.addEventListener("click", (evento) => {
-  if (!evento.target.closest(".navegacao")) fecharMenu();
-});
+secoesNavegacao.forEach((secao) => observadorNavegacao.observe(secao));
