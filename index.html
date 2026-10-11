@@ -111,26 +111,23 @@
             </p>
           </div>
 
-          <!-- O JavaScript altera o ângulo desta tela conforme a rolagem. -->
-          <div class="notebook" data-notebook aria-label="Notebook exibindo a interface da Mira Distribuidora">
+          <!-- A interface ocupa o lugar de protagonista desta abertura editorial. -->
+          <a class="notebook preview-link" data-notebook href="https://miraf-web.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir projeto Mira Distribuidora em nova aba">
             <div class="notebook-tela">
               <span class="notebook-camera" aria-hidden="true"></span>
               <div class="mockup-barra"><span></span><span></span><span></span></div>
               <div class="notebook-viewport">
-                <img
+                <iframe
                   class="mira-preview"
-                  src="assets/mira-interface.webp"
-                  alt="Interface real da Mira Distribuidora com catálogo e detalhes de produto"
-                  width="1536"
-                  height="1024"
+                  src="assets/previews/mira.html"
+                  title="Página inicial da Mira Distribuidora com as cores do portfólio"
                   loading="lazy"
-                  decoding="async"
-                />
+                  tabindex="-1"
+                  sandbox
+                ></iframe>
               </div>
             </div>
-            <div class="notebook-base" aria-hidden="true"><span></span></div>
-            <p class="notebook-dica">Role para abrir</p>
-          </div>
+          </a>
 
           <div class="projeto-apoio">
             <ul class="tecnologias" aria-label="Tecnologias usadas na Mira Distribuidora">
@@ -193,19 +190,19 @@
             </p>
           </div>
 
-          <div class="smartphone-stage" aria-label="Leve MP4 sendo executado em um smartphone">
-            <div class="smartphone">
+          <div class="smartphone-stage" aria-label="Prévia visual do Leve MP4 em um smartphone">
+            <a class="smartphone preview-link" href="https://juliaromeira.github.io/leve-mp4/" target="_blank" rel="noopener noreferrer" aria-label="Abrir projeto Leve MP4 em nova aba">
               <span class="smartphone-ilha" aria-hidden="true"></span>
               <div class="smartphone-viewport">
                 <iframe
-                  src="https://juliaromeira.github.io/leve-mp4/?v=5e6b34a"
-                  title="Prévia da aplicação Leve MP4 em um smartphone"
+                  src="assets/previews/leve.html"
+                  title="Interface original do Leve MP4 com as cores do portfólio" sandbox
                   loading="lazy"
                   tabindex="-1"
                 ></iframe>
               </div>
               <span class="smartphone-home" aria-hidden="true"></span>
-            </div>
+            </a>
             <small class="smartphone-legenda">Web app responsivo · processamento local</small>
           </div>
 
@@ -276,17 +273,21 @@
           <p class="projeto-tipo">Documentação e busca centralizada</p>
         </div>
 
-        <div class="base-intro" data-reveal>
-          <div>
-            <span class="status-projeto">Publicado</span>
+        <div class="projeto-conteudo projeto-base-conteudo" data-reveal>
+          <div class="projeto-copy">
             <h2 id="titulo-base">Base de<br /><em>Conhecimento</em></h2>
-          </div>
-
-          <div>
             <p class="descricao projeto-descricao">
               Portal de documentação com busca, categorias e conteúdo gerenciado em Markdown
             </p>
+          </div>
 
+          <figure class="base-preview">
+            <a class="base-busca-preview preview-link" href="https://base-de-conhecimento-facil.netlify.app/" target="_blank" rel="noopener noreferrer" aria-label="Explorar a busca no projeto Base de Conhecimento (abre em nova aba)">
+              <iframe class="base-interface" src="assets/previews/base.html" title="Prévia da Base de Conhecimento com a paleta do portfólio" loading="lazy" tabindex="-1" sandbox></iframe>
+            </a>
+            <figcaption>Busca e documentação <span>Interface recriada · paleta adaptada</span></figcaption>
+          </figure>
+          <div class="projeto-apoio">
             <ul class="tecnologias" aria-label="Tecnologias usadas na Base de Conhecimento">
               <li>React</li>
               <li>TypeScript</li>
@@ -301,19 +302,11 @@
           </div>
         </div>
 
-        <div class="base-live" data-reveal aria-label="Prévia ao vivo da Base de Conhecimento">
-          <div class="aplicativo-barra">
-            <span></span><span></span><span></span>
-            <small>base-de-conhecimento-facil.netlify.app</small>
-          </div>
-          <iframe
-            src="https://base-de-conhecimento-facil.netlify.app/"
-            title="Prévia da Base de Conhecimento da Fácil Informática"
-            loading="lazy"
-            tabindex="-1"
-          ></iframe>
+        <div class="base-contexto" data-reveal>
+          <p><span>01</span> Busca rápida</p>
+          <p><span>02</span> Conteúdo em Markdown</p>
+          <p><span>03</span> Gestão simplificada</p>
         </div>
-
         <details class="case-detalhes">
           <summary>Por dentro da Base <span>Conteúdo, decisões e entrega</span></summary>
         <div class="case-grid" data-reveal aria-label="Resumo do case Base de Conhecimento">
@@ -416,6 +409,7 @@
           </p>
           <div class="acoes">
             <a class="botao" href="mailto:juliaromeralage@gmail.com">Enviar e-mail <span aria-hidden="true">↗</span></a>
+            <a class="link-secundario" href="assets/Curriculo_Julia_Danieli_Romera_Lage.pdf" download="Curriculo_Julia_Danieli_Romera_Lage.pdf">Baixar currículo <span aria-hidden="true">↓</span></a>
             <a class="link-secundario" href="https://www.linkedin.com/in/juliaromeira/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
             <a class="link-secundario" href="https://github.com/JuliaRomeira" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
           </div>
