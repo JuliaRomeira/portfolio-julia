@@ -14,9 +14,17 @@
   box-sizing: border-box;
 }
 
+html {
+  background: #242220;
+}
+
 body {
-  margin: 0;
+  width: min(1320px, calc(100% - 96px));
+  margin: 48px auto;
+  border: 1px solid #cdbfa52b;
+  border-radius: 12px;
   background: var(--cor-fundo);
+  box-shadow: 0 24px 80px #0006, 0 4px 16px #0003;
   color: var(--cor-texto);
   font-family: "Manrope", sans-serif;
   font-synthesis: none;
@@ -49,6 +57,26 @@ video:focus-visible {
   background: rgb(9 9 11 / 92%);
   border-bottom: 1px solid var(--cor-borda);
   backdrop-filter: blur(16px);
+  border-radius: 12px 12px 0 0;
+}
+
+@media (min-width: 761px) and (max-width: 1100px) {
+  body {
+    width: calc(100% - 48px);
+    margin-block: 24px;
+  }
+}
+
+@media (max-width: 760px) {
+  body {
+    width: 100%;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .cabecalho { border-radius: 0; }
 }
 
 .navegacao {
@@ -306,7 +334,7 @@ h1 span {
 
 /* 7. Projeto em destaque: texto à esquerda, mockup à direita. */
 .projeto {
-  padding-block: 76px;
+  padding-block: clamp(48px, 5vw, 64px) 48px;
 }
 
 .projetos-indice + .projeto {
@@ -332,21 +360,21 @@ h1 span {
 
 .projeto-conteudo {
   display: grid;
-  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  --altura-preview: clamp(520px, 44vw, 600px);
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
   align-items: center;
-  gap: 48px;
+  gap: 24px clamp(32px, 4vw, 56px);
   padding-top: 40px;
 }
 
-.projeto-copy { grid-area: copy; }
-.projeto-apoio { grid-area: apoio; }
+.projeto-copy { grid-area: copy; align-self: end; }
+.projeto-apoio { grid-area: apoio; align-self: start; }
 
 .projeto-mira-conteudo {
   grid-template-areas:
     "copy mockup"
     "apoio mockup";
-  grid-template-columns: minmax(0, 0.58fr) minmax(0, 1.42fr);
-  gap: 28px clamp(40px, 6vw, 84px);
+
 }
 
 .projeto-mira .notebook {
@@ -354,8 +382,12 @@ h1 span {
   align-self: center;
 }
 
-.projeto-mira .notebook-tela { min-height: clamp(390px, 36vw, 560px); }
-.projeto-mira .notebook-viewport { min-height: clamp(350px, 32vw, 506px); }
+.projeto-mira .notebook-tela {
+  display: grid;
+  grid-template-rows: 18px minmax(0, 1fr);
+  aspect-ratio: 46 / 35;
+}
+.projeto-mira .notebook-viewport { min-height: 0; }
 .projeto-mira .tecnologias { margin-top: 0; }
 .projeto-mira .acoes { margin-top: 22px; }
 
@@ -395,7 +427,7 @@ h2 em { color: var(--cor-editorial); font-weight: 600; font-style: italic; }
   display: block;
   position: relative;
   isolation: isolate;
-  padding: 18px 0 28px;
+  padding: 0;
   will-change: transform;
 }
 
@@ -413,7 +445,6 @@ h2 em { color: var(--cor-editorial); font-weight: 600; font-style: italic; }
   position: relative;
   z-index: 1;
   overflow: hidden;
-  min-height: 400px;
   padding: 9px;
   border: 1px solid var(--preview-border, #4a4a50);
   border-radius: 10px;
@@ -451,7 +482,6 @@ h2 em { color: var(--cor-editorial); font-weight: 600; font-style: italic; }
 .notebook-viewport {
   position: relative;
   overflow: hidden;
-  min-height: 346px;
   border-radius: 3px 3px 1px 1px;
   background: #101012;
   opacity: 1;
@@ -469,16 +499,11 @@ h2 em { color: var(--cor-editorial); font-weight: 600; font-style: italic; }
   transform-origin: top left;
 }
 
-.projeto-leve {
-  padding-block: clamp(88px, 11vw, 144px);
-}
-
 .projeto-conteudo-invertido {
   grid-template-areas:
     "mockup copy"
     "mockup apoio";
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.9fr);
-  gap: 28px clamp(56px, 8vw, 112px);
+  grid-template-columns: minmax(0, 1.28fr) minmax(0, 0.72fr);
 }
 
 .projeto-leve .smartphone-stage { grid-area: mockup; }
@@ -516,9 +541,9 @@ h2 em { color: var(--cor-editorial); font-weight: 600; font-style: italic; }
   isolation: isolate;
   display: grid;
   place-items: center;
-  gap: 24px;
+  gap: 14px;
   min-height: 0;
-  padding-block: 20px;
+  padding-block: 0;
 }
 
 .projeto-leve .smartphone-stage::before {
@@ -535,7 +560,7 @@ h2 em { color: var(--cor-editorial); font-weight: 600; font-style: italic; }
 .smartphone {
   position: relative;
   z-index: 1;
-  width: min(304px, 100%);
+  width: min(100%, calc(var(--altura-preview) * 0.51));
   padding: 10px;
   border: 2px solid var(--preview-border, #55555c);
   border-radius: 50px;
@@ -545,7 +570,7 @@ h2 em { color: var(--cor-editorial); font-weight: 600; font-style: italic; }
 
 .smartphone-viewport {
   --escala-app: 0.96;
-  height: 568px;
+  height: calc(var(--altura-preview) - 24px);
   overflow: hidden;
   border-radius: 39px;
   background: #101012;
@@ -567,8 +592,8 @@ h2 em { color: var(--cor-editorial); font-weight: 600; font-style: italic; }
   z-index: 2;
   top: 20px;
   left: 50%;
-  width: 92px;
-  height: 25px;
+  width: 30%;
+  height: 4%;
   border-radius: 999px;
   background: #030304;
   transform: translateX(-50%);
@@ -579,8 +604,8 @@ h2 em { color: var(--cor-editorial); font-weight: 600; font-style: italic; }
   z-index: 2;
   bottom: 18px;
   left: 50%;
-  width: 94px;
-  height: 4px;
+  width: 31%;
+  height: 3px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.72);
   transform: translateX(-50%);
@@ -594,17 +619,11 @@ h2 em { color: var(--cor-editorial); font-weight: 600; font-style: italic; }
   text-transform: uppercase;
 }
 
-.projeto-base {
-  padding-top: 96px;
-  padding-bottom: 112px;
-}
-
 .projeto-base-conteudo {
   grid-template-areas:
     "copy mockup"
     "apoio mockup";
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: 28px clamp(32px, 4vw, 56px);
+
 }
 
 .projeto-base .tecnologias { margin-top: 0; }
@@ -646,7 +665,7 @@ h2 em { color: var(--cor-editorial); font-weight: 600; font-style: italic; }
   display: block;
   position: relative;
   overflow: hidden;
-  height: 460px;
+  aspect-ratio: 46 / 35;
   border: 1px solid var(--preview-border, var(--cor-borda));
   border-radius: 10px;
   background: linear-gradient(145deg, #cdbfa508, transparent 65%), #101012;
@@ -767,7 +786,7 @@ h2 em { color: var(--cor-editorial); font-weight: 600; font-style: italic; }
   display: flex;
   justify-content: space-between;
   gap: 24px;
-  margin-bottom: 56px;
+  margin-bottom: 36px;
 }
 
 .secao-cabecalho .etiqueta {
@@ -842,23 +861,25 @@ h2 em { color: var(--cor-editorial); font-weight: 600; font-style: italic; }
 }
 
 .experiencia blockquote {
-  max-width: 900px;
-  margin: 56px auto 0;
+  max-width: 390px;
+  margin: 36px 0 0;
+  padding-top: 24px;
+  border-top: 1px solid var(--cor-borda);
   color: var(--cor-editorial);
   font-family: "Cormorant Garamond", serif;
-  font-size: clamp(28px, 3.5vw, 44px);
+  font-size: clamp(28px, 2.6vw, 36px);
   font-style: italic;
   line-height: 1.14;
-  letter-spacing: -2px;
-  text-align: center;
+  letter-spacing: -0.035em;
+  text-align: left;
 }
 
 .stack-titulo {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr);
   align-items: end;
-  gap: 64px;
-  margin-bottom: 56px;
+  gap: 40px;
+  margin-bottom: 36px;
 }
 
 .stack-titulo h2 {
@@ -965,7 +986,7 @@ section[id] { scroll-margin-top: 88px; }
   display: flex;
   justify-content: space-between;
   gap: 24px;
-  margin-top: 64px;
+  margin-top: 48px;
   padding-top: 26px;
   border-top: 1px solid var(--cor-borda);
   color: #777780;
@@ -1089,6 +1110,29 @@ html {
   }
 }
 
+/* As prévias precisam de mais espaço que a navegação no tablet. */
+@media (min-width: 761px) and (max-width: 1000px) {
+  .navegacao { gap: 16px; }
+  .navegacao nav { gap: 12px; }
+  .navegacao nav a:last-child { padding-left: 12px; }
+  .marca { font-size: 15px; }
+
+  .projeto-conteudo {
+    --altura-preview: clamp(520px, 65vw, 580px);
+    grid-template-areas: "copy apoio" "mockup mockup";
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 28px;
+  }
+  .projeto-copy, .projeto-apoio { align-self: center; }
+  .smartphone-viewport { --escala-app: 0.82; }
+  .experiencia-grid { grid-template-columns: 1fr; gap: 36px; }
+  .experiencia blockquote { max-width: 600px; }
+}
+
+@media (min-width: 1001px) and (max-width: 1200px) {
+  .smartphone-viewport { --escala-app: 0.82; }
+}
+
 /* 8. Em telas menores, a apresentação passa a ter apenas uma coluna. */
 @media (max-width: 760px) {
   .navegacao {
@@ -1160,11 +1204,13 @@ html {
 
   .projeto-cabecalho {
     display: grid;
+    gap: 12px;
   }
 
   .projeto-conteudo {
-    gap: 42px;
-    padding-top: 48px;
+    --altura-preview: clamp(500px, 140vw, 560px);
+    gap: 24px;
+    padding-top: 32px;
   }
 
   .projeto-mira-conteudo,
@@ -1175,56 +1221,34 @@ html {
       "mockup"
       "apoio";
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 24px;
   }
 
   .projeto-mira .notebook {
-    padding: 12px 0 22px;
+    padding: 0;
   }
 
   .projeto-mira .notebook::before {
-    inset: 4% -8% 16%;
+    inset: 4% 0 16%;
   }
 
-  .projeto-mira .notebook-tela { min-height: 310px; }
-  .projeto-mira .notebook-viewport { min-height: 252px; }
+
 
   h2 {
     letter-spacing: -2px;
   }
 
-  .notebook {
-    padding-inline: 4px;
-  }
 
-  .notebook-tela {
-    min-height: 310px;
-  }
-
-  .notebook-viewport {
-    min-height: 252px;
-  }
-
-  .projeto-leve { padding-block: 72px; }
 
   .smartphone-stage {
     width: 100%;
     min-height: auto;
-    padding: 12px 0 4px;
+    padding: 0;
   }
 
-  .smartphone {
-    width: min(296px, calc(100vw - 72px));
-  }
 
-  .smartphone-viewport {
-    height: min(540px, calc(195vw - 140px));
-  }
 
-  .projeto-base {
-    padding-top: 64px;
-    padding-bottom: 76px;
-  }
+  .smartphone-viewport { --escala-app: 0.82; }
 
   .base-contexto {
     grid-template-columns: 1fr;
@@ -1241,7 +1265,7 @@ html {
 
   .case-grid {
     grid-template-columns: 1fr;
-    margin-top: 52px;
+    margin-top: 24px;
   }
 
   .case-grid article {
@@ -1249,7 +1273,7 @@ html {
   }
 
   .case-grid p {
-    margin-top: 32px;
+    margin-top: 20px;
   }
 
   .experiencia,
@@ -1267,12 +1291,12 @@ html {
   .secao-cabecalho {
     display: grid;
     gap: 14px;
-    margin-bottom: 52px;
+    margin-bottom: 32px;
   }
 
   .experiencia-grid,
   .stack-titulo {
-    gap: 42px;
+    gap: 32px;
   }
 
   .fluxo-stack {
@@ -1301,7 +1325,7 @@ html {
   }
 
   .experiencia blockquote {
-    margin-top: 48px;
+    margin-top: 28px;
   }
 
   .stack-grid article {
