@@ -1380,3 +1380,8 @@ html {
     text-align: center;
   }
 }
+
+/* Mantém os cinco links dentro da navbar nas menores telas. */
+@media (max-width: 360px) {
+  .navegacao { padding-inline: 8px; }
+}

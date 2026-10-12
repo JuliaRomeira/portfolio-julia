@@ -132,7 +132,8 @@ const secoesNavegacao = linksNavegacao
 function destacarSecao(secao) {
   linksNavegacao.forEach((link) => {
     const atual = link.getAttribute("href") === `#${secao.id}`;
-    link.toggleAttribute("aria-current", atual);
+    if (atual) link.setAttribute("aria-current", "page");
+    else link.removeAttribute("aria-current");
   });
 }
 
