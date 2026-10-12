@@ -61,6 +61,7 @@ function solicitarAtualizacao() {
   requestAnimationFrame(() => {
     atualizarNotebook();
     atualizarSmartphone();
+    atualizarNavegacao();
     atualizacaoPendente = false;
   });
 }
@@ -137,9 +138,25 @@ function destacarSecao(secao) {
   });
 }
 
-const observadorNavegacao = new IntersectionObserver((entradas) => {
-  const secaoVisivel = entradas.find((entrada) => entrada.isIntersecting);
-  if (secaoVisivel) destacarSecao(secaoVisivel.target);
-}, { rootMargin: "-35% 0px -55%", threshold: 0 });
+const cabecalho = document.querySelector(".cabecalho");
 
-secoesNavegacao.forEach((secao) => observadorNavegacao.observe(secao));
+function atualizarNavegacao() {
+  if (!secoesNavegacao.length) return;
+  const limite = Math.max(
+    cabecalho.getBoundingClientRect().bottom,
+    parseFloat(getComputedStyle(secoesNavegacao[0]).scrollMarginTop) || 0
+  ) + 1;
+  let secaoAtual = secoesNavegacao[0];
+  secoesNavegacao.forEach((secao) => {
+    if (secao.getBoundingClientRect().top <= limite) secaoAtual = secao;
+  });
+  // Contato pode não alcançar o cabeçalho antes de a rolagem chegar ao fim.
+  if (scrollY > 0 && scrollY + innerHeight >= document.documentElement.scrollHeight - 2) {
+    secaoAtual = secoesNavegacao[secoesNavegacao.length - 1];
+  }
+  destacarSecao(secaoAtual);
+}
+
+window.addEventListener("load", solicitarAtualizacao);
+window.addEventListener("pageshow", solicitarAtualizacao);
+atualizarNavegacao();
