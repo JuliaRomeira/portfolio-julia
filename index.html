@@ -9,7 +9,7 @@
       content="Portfólio de Júlia Danieli Romera Lage — soluções para problemas reais por meio do desenvolvimento de software."
     />
     <meta name="author" content="Júlia Danieli Romera Lage" />
-    <meta name="theme-color" content="#09090b" />
+    <meta name="theme-color" content="#07070a" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://portfolio-julia-nine.vercel.app/" />
     <meta property="og:locale" content="pt_BR" />
@@ -32,22 +32,22 @@
     <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48" />
     <link rel="icon" href="assets/favicon.svg?v=jr2" type="image/svg+xml" sizes="any" />
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" sizes="180x180" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&family=Manrope:wght@400;500;600;700&display=optional" rel="stylesheet" />
+    <link rel="preload" href="assets/fonts/manrope-latin-variable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="estilos.css" />
+    <link rel="stylesheet" href="paginas.css" />
   </head>
 
-  <body>
+  <body class="pagina-inicio">
+    <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
     <!-- O cabeçalho reúne a marca e os links de navegação. -->
     <header class="cabecalho">
       <div class="container navegacao">
         <a class="marca" href="#inicio" aria-label="Júlia Danieli Romera Lage — início">
-          Júlia Romeira<span>.</span>
+          JR<span> / Portfólio</span>
         </a>
 
         <nav id="menu-principal" aria-label="Navegação principal">
-          <a href="#inicio">Início</a>
+          <a href="#inicio" aria-current="location">Início</a>
           <a href="#projetos">Projetos</a>
           <a href="#experiencia">Experiência</a>
           <a href="#contato">Contato</a>
@@ -58,55 +58,72 @@
     </header>
 
     <!-- O main contém o conteúdo principal. Esta é a primeira seção do site. -->
-    <main>
+<main id="conteudo" tabindex="-1">
+
       <section class="container apresentacao" id="inicio" aria-labelledby="titulo">
-        <div class="apresentacao-texto">
-          <p class="etiqueta">Júlia Danieli Romera Lage</p>
-
-          <h1 id="titulo">
-            Desenvolvedora
-            <span>de Software</span>
-          </h1>
-
-          <p class="descricao">
-            Profissional de TI em evolução para Desenvolvimento de Software,
-            construindo soluções para problemas reais.
-          </p>
-
-          <div class="acoes">
-            <a class="botao" href="#projetos">
-              Ver meus projetos <span aria-hidden="true">↗</span>
-            </a>
-            <a class="botao botao-contorno" href="#contato">
-              Vamos conversar <span aria-hidden="true">↗</span>
-            </a>
-          </div>
-          <p class="hero-assinatura">Disciplina hoje <span>· Soluções amanhã</span></p>
+        <div class="hero-edicao">
+          <p class="etiqueta"><span class="status-ponto" aria-hidden="true"></span> Desenvolvimento de Software</p>
+          <p class="etiqueta">Brasil — 2026</p>
         </div>
-
-        <!-- A foto original é preservada; o tratamento visual fica no CSS. -->
-        <figure class="retrato retrato-hero">
-          <img src="assets/julia-romeira.jpg" alt="Retrato de Júlia Danieli Romera Lage" width="640" height="640" fetchpriority="high" />
-        </figure>
+        <div class="hero-composicao">
+          <div class="hero-introducao">
+            <p class="etiqueta">Olá, sou a Júlia.</p>
+            <p class="descricao">Profissional de TI em evolução para Desenvolvimento de Software, construindo soluções para problemas reais.</p>
+          </div>
+          <h1 id="titulo"><span class="nome-primeiro"><span class="nome-letras">Júlia</span><span class="nome-sinal" aria-hidden="true"><svg viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="48" stroke="currentColor" stroke-width="1"/><path d="M32 68 68 32M32 32h36v36" stroke="currentColor" stroke-width="2"/></svg></span></span> <span class="nome-segundo"><span class="nome-letras">Romera</span></span></h1>
+          <figure class="retrato retrato-hero">
+            <img src="assets/julia-romeira.jpg" alt="Retrato de Júlia Danieli Romera Lage" width="640" height="640" fetchpriority="high" />
+            <figcaption>Júlia Danieli Romera Lage</figcaption>
+          </figure>
+        </div>
+        <div class="hero-rodape">
+          <p>Disciplina hoje.<br /><span>Soluções amanhã.</span></p>
+          <div class="acoes">
+            <a class="link-secundario" href="#contato">Vamos conversar <span aria-hidden="true">↗</span></a>
+            <a class="botao" href="#projetos">Ver meus projetos <span aria-hidden="true">↓</span></a>
+          </div>
+        </div>
 
       </section>
 
-      <nav class="container projetos-indice" aria-label="Explore os projetos">
-        <a href="#projetos"><span class="indice-numero">01</span><span><strong>Mira Distribuidora</strong><small>Catálogo e cotações</small></span><span aria-hidden="true">↗</span></a>
+      <section class="faixa-cinetica" aria-label="Tecnologias e áreas de atuação em movimento">
+        <p class="somente-leitor">Desenvolvimento de software, Java, Spring Boot, React, TypeScript, PostgreSQL, interface, lógica e dados.</p>
+        <div class="faixa-linha faixa-linha-superior" aria-hidden="true">
+          <div class="faixa-trilho">
+            <span>Desenvolvimento de Software <i>✦</i> Java <i>✦</i> Spring Boot <i>✦</i> React <i>✦</i> TypeScript <i>✦</i> PostgreSQL <i>✦</i></span>
+            <span>Desenvolvimento de Software <i>✦</i> Java <i>✦</i> Spring Boot <i>✦</i> React <i>✦</i> TypeScript <i>✦</i> PostgreSQL <i>✦</i></span>
+          </div>
+        </div>
+        <div class="faixa-linha faixa-linha-inferior" aria-hidden="true">
+          <div class="faixa-trilho faixa-trilho-reverso">
+            <span>Problemas reais <i>↗</i> Produtos claros <i>↗</i> Back-end <i>↗</i> Interface <i>↗</i> Lógica <i>↗</i> Dados <i>↗</i></span>
+            <span>Problemas reais <i>↗</i> Produtos claros <i>↗</i> Back-end <i>↗</i> Interface <i>↗</i> Lógica <i>↗</i> Dados <i>↗</i></span>
+          </div>
+        </div>
+      </section>
+
+<section class="capitulo pagina-projetos" id="projetos" aria-labelledby="titulo-projetos-abertura">
+<section class="container galeria-abertura" aria-labelledby="titulo-projetos-abertura">
+<div class="galeria-copy"><p class="etiqueta">Projetos selecionados / 01 — 03</p><h2 class="titulo-capitulo" id="titulo-projetos-abertura">Ideias.<br><em>Código.</em><br>Na prática.</h2><p class="descricao">Três problemas diferentes. Três soluções para simplificar o dia a dia.</p><a href="#mira" class="botao">Explorar os projetos <span aria-hidden="true">↓</span></a></div>
+<div class="galeria-colagem" aria-label="Escolha um projeto">
+<a class="colagem-mira" href="#mira"><img src="assets/galeria-mira.png" alt="Prévia da página inicial da Mira Distribuidora" width="1100" height="700" loading="lazy"><span>01 / Mira Distribuidora ↗</span></a>
+<a class="colagem-leve" href="#leve-mp4"><img src="assets/galeria-leve.png" alt="Prévia do compactador de vídeos Leve MP4" width="480" height="600" loading="lazy"><span>02 / Leve MP4 ↗</span></a>
+<a class="colagem-base" href="#base-conhecimento"><img src="assets/galeria-base.png" alt="Prévia da busca e categorias da Base de Conhecimento" width="600" height="600" loading="lazy"><span>03 / Base de Conhecimento ↗</span></a>
+</div></section>      <nav class="container projetos-indice" aria-label="Explore os projetos">
+        <a href="#mira"><span class="indice-numero">01</span><span><strong>Mira Distribuidora</strong><small>Catálogo e cotações</small></span><span aria-hidden="true">↗</span></a>
         <a href="#leve-mp4"><span class="indice-numero">02</span><span><strong>Leve MP4</strong><small>Vídeos menores, no navegador</small></span><span aria-hidden="true">↗</span></a>
         <a href="#base-conhecimento"><span class="indice-numero">03</span><span><strong>Base de Conhecimento</strong><small>Documentação e busca</small></span><span aria-hidden="true">↗</span></a>
       </nav>
 
-      <!-- Cada projeto terá uma seção própria. Começamos pela Mira, o case principal. -->
-      <section class="projeto projeto-mira container" id="projetos" aria-labelledby="titulo-mira">
+      <section class="projeto projeto-mira container" id="mira" aria-labelledby="titulo-mira">
         <div class="projeto-cabecalho">
-          <p class="etiqueta">01 / Mira Distribuidora</p>
+          <p class="etiqueta"><span class="numero-projeto">01</span> / Desenvolvimento web</p>
           <p class="projeto-tipo">Catálogo e cotações</p>
         </div>
 
         <div class="projeto-conteudo projeto-mira-conteudo" data-reveal>
           <div class="projeto-copy">
-            <h2 id="titulo-mira">Mira<br /><em>Distribuidora</em></h2>
+            <h2 id="titulo-mira">Mira <em>Distribuidora</em></h2>
             <p class="descricao projeto-descricao">
               Catálogo e cotações para simplificar a descoberta de produtos e os pedidos de orçamento
             </p>
@@ -179,7 +196,7 @@
 
       <section class="projeto projeto-leve container" id="leve-mp4" aria-labelledby="titulo-leve">
         <div class="projeto-cabecalho">
-          <p class="etiqueta">02 / Leve MP4</p>
+          <p class="etiqueta"><span class="numero-projeto">02</span> / Ferramenta</p>
           <p class="projeto-tipo">Compactação de vídeo no navegador</p>
         </div>
 
@@ -270,7 +287,7 @@
 
       <section class="projeto projeto-base container" id="base-conhecimento" aria-labelledby="titulo-base">
         <div class="projeto-cabecalho">
-          <p class="etiqueta">03 / Base de Conhecimento</p>
+          <p class="etiqueta"><span class="numero-projeto">03</span> / Documentação</p>
           <p class="projeto-tipo">Documentação e busca centralizada</p>
         </div>
 
@@ -331,7 +348,10 @@
         </section>
       </section>
 
-      <section class="experiencia container" id="experiencia" aria-labelledby="titulo-experiencia">
+
+</section>
+<section class="capitulo pagina-experiencia" id="experiencia" aria-labelledby="titulo-experiencia-abertura">
+<section class="container trajetoria-abertura" aria-labelledby="titulo-experiencia-abertura"><div><p class="etiqueta">Experiência / O caminho até aqui</p><h2 class="titulo-capitulo" id="titulo-experiencia-abertura">Antes do<br>código,<br><em>as pessoas.</em></h2><p class="descricao">Investigar, entender e resolver. Uma trajetória em TI que aproxima problemas reais do desenvolvimento de software.</p><a href="#historico" class="botao">Conheça minha trajetória <span aria-hidden="true">↓</span></a></div><div class="trajetoria-diagrama" aria-label="Investigar, entender e construir"><span>01 / INVESTIGAR</span><span>02 / ENTENDER</span><span>03 / CONSTRUIR</span><p>Suporte → Sistemas → Software</p></div></section>      <section class="experiencia container" id="historico" aria-labelledby="titulo-experiencia">
         <div class="secao-cabecalho">
           <p class="etiqueta">04 / Trajetória profissional</p>
           <span>Suporte que se transforma em produto</span>
@@ -399,28 +419,16 @@
         </div>
       </section>
 
-      <section class="contato container" id="contato" aria-labelledby="titulo-contato">
-        <div data-reveal>
-          <p class="etiqueta">06 / Contato</p>
-          <h2 id="titulo-contato">Vamos <em>conversar?</em></h2>
-          <p class="descricao">
-            Disponível para oportunidades de estágio e nível júnior em Desenvolvimento de Software.
-          </p>
-          <div class="acoes">
-            <a class="botao" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=juliaromeralage%40gmail.com" target="_blank" rel="noopener noreferrer" aria-label="Escrever para Júlia no Gmail (abre em nova aba)">Enviar e-mail <span aria-hidden="true">↗</span></a>
-            <a class="link-secundario" href="assets/Curriculo_Julia_Danieli_Romera_Lage.pdf" download="Curriculo_Julia_Danieli_Romera_Lage.pdf">Baixar currículo <span aria-hidden="true">↓</span></a>
-            <a class="link-secundario" href="https://www.linkedin.com/in/juliaromeira/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
-            <a class="link-secundario" href="https://github.com/JuliaRomeira" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
-          </div>
-        </div>
 
-        <footer>
-          <span>Júlia Danieli Romera Lage · <span data-year></span></span>
-          <a href="#inicio">Voltar ao início ↑</a>
-        </footer>
-      </section>
-    </main>
-    <span class="cursor-orbita" aria-hidden="true"></span>
-    <script src="script.js" defer></script>
-  </body>
+</section>
+<section class="capitulo pagina-contato" id="contato" aria-labelledby="titulo-contato-abertura">
+<section class="container contato-palco" aria-labelledby="titulo-contato-abertura"><div class="contato-convite"><p class="etiqueta"><span class="status-ponto" aria-hidden="true"></span> Aberta a oportunidades</p><h2 class="titulo-capitulo" id="titulo-contato-abertura">Boas soluções<br>começam com<br><em>uma conversa.</em></h2><p class="descricao">Busco uma oportunidade em desenvolvimento de software para aprofundar meus conhecimentos e contribuir com soluções que facilitem a rotina dos usuários.</p><a class="email-principal" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=juliaromeralage%40gmail.com" target="_blank" rel="noopener noreferrer">juliaromeralage@gmail.com <span aria-hidden="true">↗</span></a><button type="button" class="copiar-email" hidden>Copiar e-mail</button><p class="aviso-copia" role="status" aria-live="polite"></p></div>
+<aside class="cartao-contato"><div class="cordao" aria-hidden="true"></div><div class="cartao-perfil"><p>JÚLIA ROMERA <span>↗</span></p><img src="assets/julia-romeira.jpg" alt="Júlia Danieli Romera Lage" width="640" height="640"><small>Desenvolvimento de Software</small><strong>Vamos construir<br>o próximo passo.</strong><a href="assets/Curriculo_Julia_Romeira.pdf" download>Baixar meu currículo ↓</a></div></aside></section>
+<nav class="container conexoes" aria-label="Conecte-se comigo"><a href="https://www.linkedin.com/in/juliaromeira/" target="_blank" rel="noopener noreferrer"><small>Conexões profissionais</small><strong>LinkedIn</strong><span>↗</span></a><a href="https://github.com/JuliaRomeira" target="_blank" rel="noopener noreferrer"><small>Código e projetos</small><strong>GitHub</strong><span>↗</span></a><a href="https://wa.me/5516988480509" target="_blank" rel="noopener noreferrer"><small>Contato direto</small><strong>WhatsApp</strong><span>↗</span></a><a href="#projetos"><small>Conheça meu trabalho</small><strong>Projetos</strong><span>↗</span></a></nav>
+</section>
+</main>
+<footer class="rodape-paginas container"><a href="#inicio">JR / Júlia Romera</a><span>Desenvolvimento de Software · <span data-year>2026</span></span><a href="https://wa.me/5516988480509" target="_blank" rel="noopener noreferrer">Vamos conversar ↗</a></footer>
+<span class="cursor-orbita" aria-hidden="true"></span>
+<script src="script.js" defer></script>
+</body>
 </html>

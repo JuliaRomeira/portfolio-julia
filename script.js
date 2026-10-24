@@ -1,162 +1,158 @@
-const notebook = document.querySelector("[data-notebook]");
-const reduzMovimento = window.matchMedia("(prefers-reduced-motion: reduce)");
-const smartphone = document.querySelector(".smartphone");
-const palcoSmartphone = document.querySelector(".smartphone-stage");
-const telaPequena = window.matchMedia("(max-width: 760px)");
-const cursorOrbita = document.querySelector(".cursor-orbita");
-const cursorPreciso = window.matchMedia("(hover: hover) and (pointer: fine)");
-
-const projetos = {
-  mira: "Concebi e desenvolvi a plataforma, estruturando a descoberta de produtos, o fluxo de cotações e a base técnica com Next.js, Prisma e PostgreSQL.",
-  leve: "Desenvolvi a aplicação de ponta a ponta: interface responsiva, escolhas de compactação e processamento local de vídeos no navegador.",
-  base: "Estruturei a experiência do portal e o fluxo de conteúdo em Markdown, incluindo busca, categorias e administração pelo Decap CMS.",
-};
-
-document.querySelectorAll("[data-project-role]").forEach((bloco) => {
-  const texto = projetos[bloco.dataset.projectRole];
-  const paragrafo = bloco.querySelector("p");
-  if (texto && paragrafo) paragrafo.textContent = texto;
-});
-
-// A posição do palco é estável: o movimento do telefone não altera o cálculo.
-function atualizarSmartphone() {
-  if (!smartphone || !palcoSmartphone) return;
-  if (reduzMovimento.matches) {
-    smartphone.style.removeProperty("transform");
-    return;
-  }
-  const topo = palcoSmartphone.getBoundingClientRect().top;
-  const progresso = limitar((innerHeight * 0.95 - topo) / (innerHeight * 0.65), 0, 1);
-  const restante = 1 - progresso;
-  const distancia = telaPequena.matches ? 16 : 32;
-  const angulo = telaPequena.matches ? 0 : -3;
-  smartphone.style.transform = `translateY(${restante * distancia}px) rotate(${restante * angulo}deg)`;
-}
-
-function limitar(valor, minimo, maximo) {
-  return Math.min(Math.max(valor, minimo), maximo);
-}
-
-function atualizarNotebook() {
-  if (!notebook) return;
-  if (reduzMovimento.matches) {
-    notebook.style.removeProperty("transform");
-    return;
-  }
-
-  const topo = notebook.getBoundingClientRect().top;
-  const progresso = limitar((innerHeight * 0.95 - topo) / (innerHeight * 0.65), 0, 1);
-  const restante = 1 - progresso;
-  const distancia = telaPequena.matches ? 16 : 32;
-  const angulo = telaPequena.matches ? 0 : -3;
-  notebook.style.transform = `translateY(${restante * distancia}px) rotate(${restante * angulo}deg)`;
-}
-
-let atualizacaoPendente = false;
-
-function solicitarAtualizacao() {
-  if (atualizacaoPendente) return;
-
-  atualizacaoPendente = true;
-  requestAnimationFrame(() => {
-    atualizarNotebook();
-    atualizarSmartphone();
-    atualizarNavegacao();
-    atualizacaoPendente = false;
-  });
-}
-
-window.addEventListener("scroll", solicitarAtualizacao, { passive: true });
-window.addEventListener("resize", solicitarAtualizacao);
-atualizarNotebook();
-atualizarSmartphone();
-
-// Revelar cada bloco evita esperar que uma seção inteira caiba na tela do celular.
-const elementosParaRevelar = [];
-document.querySelectorAll("[data-reveal]").forEach((grupo) => {
-  const dividir = grupo.matches(".case-grid, .stack-grid, .projeto-conteudo, .base-intro, .experiencia-grid, .stack-titulo");
-  elementosParaRevelar.push(...(dividir ? grupo.children : [grupo]));
-});
-
-const observador = new IntersectionObserver(
-  (entradas) => {
-    entradas.forEach((entrada) => {
-      if (entrada.isIntersecting) {
-        entrada.target.classList.remove("revelacao-pendente");
-        elementosJaRevelados.add(entrada.target);
-      } else if (elementosJaRevelados.has(entrada.target)) {
-        entrada.target.classList.add("revelacao-pendente");
-      }
-    });
-  },
-  { threshold: 0, rootMargin: "0px 0px -32px 0px" }
-);
-
-const elementosJaRevelados = new WeakSet();
-
-elementosParaRevelar.forEach((elemento) => {
-  elemento.classList.add("revelacao");
-  if (!reduzMovimento.matches && elemento.getBoundingClientRect().top >= innerHeight) {
-    elemento.classList.add("revelacao-pendente");
-    observador.observe(elemento);
-  }
-});
-
-reduzMovimento.addEventListener("change", () => {
-  if (reduzMovimento.matches) {
-    elementosParaRevelar.forEach((elemento) => elemento.classList.remove("revelacao-pendente"));
-    observador.disconnect();
-  }
-  solicitarAtualizacao();
-});
-
-if (cursorOrbita && cursorPreciso.matches && !reduzMovimento.matches) {
-  document.documentElement.addEventListener("pointermove", (evento) => {
-    cursorOrbita.style.setProperty("--cursor-x", `${evento.clientX}px`);
-    cursorOrbita.style.setProperty("--cursor-y", `${evento.clientY}px`);
-    cursorOrbita.classList.add("cursor-ativa");
-  });
-
-  const ocultarCursor = () => cursorOrbita.classList.remove("cursor-ativa");
-  document.documentElement.addEventListener("pointerleave", ocultarCursor);
-  window.addEventListener("blur", ocultarCursor);
-}
-
 const ano = document.querySelector("[data-year]");
 if (ano) ano.textContent = new Date().getFullYear();
 
-const linksNavegacao = [...document.querySelectorAll('#menu-principal a[href^="#"]')];
-const secoesNavegacao = linksNavegacao
-  .map((link) => document.querySelector(link.getAttribute("href")))
-  .filter(Boolean);
-
-function destacarSecao(secao) {
-  linksNavegacao.forEach((link) => {
-    const atual = link.getAttribute("href") === `#${secao.id}`;
-    if (atual) link.setAttribute("aria-current", "page");
-    else link.removeAttribute("aria-current");
+// Repete o conteúdo até cobrir a faixa, inclusive no fim de cada volta.
+document.fonts.ready.then(() => {
+  document.querySelectorAll(".faixa-trilho").forEach((trilho) => {
+    const original = trilho.firstElementChild;
+    function ajustarFaixa() {
+      const passo = parseFloat(getComputedStyle(original).width);
+      if (!passo) return;
+      const quantidade = Math.ceil(trilho.parentElement.clientWidth / passo) + 1;
+      while (trilho.children.length > quantidade) trilho.lastElementChild.remove();
+      while (trilho.children.length < quantidade) trilho.append(original.cloneNode(true));
+      trilho.style.setProperty("--faixa-passo", passo + "px");
+      trilho.classList.add("faixa-pronta");
+    }
+    ajustarFaixa();
+    new ResizeObserver(ajustarFaixa).observe(trilho.parentElement);
   });
-}
+});
 
-const cabecalho = document.querySelector(".cabecalho");
+// O conteúdo permanece visível sem JavaScript ou com movimento reduzido.
+function iniciarMovimento() {
+  if (!("IntersectionObserver" in window)) return;
+  const preferencia = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const raiz = document.documentElement;
+  const hero = document.querySelector(".apresentacao");
+  const alvos = [...document.querySelectorAll(
+    "main h2, .projeto-descricao, .projeto-apoio, .notebook, .smartphone-stage, .base-preview, .cargo, .stack-grid article, .minha-atuacao"
+  )];
+  let abertura;
+  let temporizadorEntrada;
+  let temporizadorAbertura;
 
-function atualizarNavegacao() {
-  if (!secoesNavegacao.length) return;
-  const limite = Math.max(
-    cabecalho.getBoundingClientRect().bottom,
-    parseFloat(getComputedStyle(secoesNavegacao[0]).scrollMarginTop) || 0
-  ) + 1;
-  let secaoAtual = secoesNavegacao[0];
-  secoesNavegacao.forEach((secao) => {
-    if (secao.getBoundingClientRect().top <= limite) secaoAtual = secao;
+  const revelar = (elemento) => {
+    elemento.classList.remove("revelar-pendente");
+    elemento.classList.add("revelado");
+  };
+  const observador = new IntersectionObserver((entradas) => {
+    entradas.forEach((entrada) => {
+      if (!entrada.isIntersecting) return;
+      revelar(entrada.target);
+      observador.unobserve(entrada.target);
+    });
+  }, { rootMargin: "0px 0px -24px 0px", threshold: 0 });
+  const observadorHero = new IntersectionObserver(([entrada]) => {
+    raiz.classList.toggle("hero-visivel", entrada.isIntersecting);
   });
-  // Contato pode não alcançar o cabeçalho antes de a rolagem chegar ao fim.
-  if (scrollY > 0 && scrollY + innerHeight >= document.documentElement.scrollHeight - 2) {
-    secaoAtual = secoesNavegacao[secoesNavegacao.length - 1];
+
+  function encerrarAbertura() {
+    clearTimeout(temporizadorEntrada);
+    clearTimeout(temporizadorAbertura);
+    abertura?.remove();
+    abertura = null;
+    raiz.classList.remove("entrada-ativa");
   }
-  destacarSecao(secaoAtual);
-}
 
-window.addEventListener("load", solicitarAtualizacao);
-window.addEventListener("pageshow", solicitarAtualizacao);
-atualizarNavegacao();
+  function configurar(comAbertura = false) {
+    observador.disconnect();
+    observadorHero.disconnect();
+    encerrarAbertura();
+    alvos.forEach((alvo) => alvo.classList.remove("revelar-pendente", "revelado"));
+    raiz.classList.toggle("movimento-ativo", !preferencia.matches);
+    if (preferencia.matches) {
+      raiz.classList.remove("hero-visivel");
+      return;
+    }
+    if (hero) observadorHero.observe(hero);
+    alvos.forEach((alvo) => {
+      if (alvo.getBoundingClientRect().top < innerHeight) return;
+      alvo.classList.add("revelar-pendente");
+      observador.observe(alvo);
+    });
+    // Links diretos e posições restauradas não devem passar pela abertura.
+    if (!hero || !comAbertura || location.hash || scrollY > 24) return;
+    raiz.classList.add("entrada-ativa");
+    abertura = document.createElement("div");
+    abertura.className = "abertura";
+    abertura.setAttribute("aria-hidden", "true");
+    abertura.innerHTML = `<svg viewBox="0 0 200 150" fill="none" aria-hidden="true">
+      <path class="abertura-j" pathLength="1" d="M28 30H80V94C80 130 24 130 24 97" />
+      <path class="abertura-r" pathLength="1" d="M108 122V30H137C185 30 185 81 137 81H108M137 81L180 122" />
+    </svg>`;
+    document.body.append(abertura);
+    temporizadorAbertura = setTimeout(() => { abertura?.remove(); abertura = null; }, 1750);
+    temporizadorEntrada = setTimeout(() => raiz.classList.remove("entrada-ativa"), 2700);
+  }
+
+  // A navegação por teclado e por âncoras tem prioridade sobre a sequência visual.
+  document.addEventListener("keydown", encerrarAbertura);
+  window.addEventListener("hashchange", encerrarAbertura);
+  window.addEventListener("pageshow", (evento) => {
+    if (evento.persisted) configurar();
+  });
+  document.addEventListener("focusin", (evento) => {
+    const alvo = evento.target.closest(".revelar-pendente");
+    if (alvo) {
+      alvo.classList.remove("revelar-pendente");
+      observador.unobserve(alvo);
+    }
+  });
+  preferencia.addEventListener("change", () => configurar());
+  configurar(true);
+}
+iniciarMovimento();
+
+// Um brilho acompanha o ponteiro em telas precisas sem interferir em toque ou teclado.
+function iniciarGlowInterativo() {
+  const glow = document.querySelector(".cursor-orbita");
+  const ponteiroPreciso = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const movimentoReduzido = window.matchMedia("(prefers-reduced-motion: reduce)");
+  if (!glow || !ponteiroPreciso.matches || movimentoReduzido.matches) return;
+
+  window.addEventListener("pointermove", (evento) => {
+    glow.style.setProperty("--cursor-x", `${evento.clientX}px`);
+    glow.style.setProperty("--cursor-y", `${evento.clientY}px`);
+    glow.classList.add("cursor-visivel");
+  }, { passive: true });
+  document.documentElement.addEventListener("mouseleave", () => glow.classList.remove("cursor-visivel"));
+}
+iniciarGlowInterativo();
+
+
+const copiarEmail = document.querySelector(".copiar-email");
+if (copiarEmail && navigator.clipboard) {
+  copiarEmail.hidden = false;
+  copiarEmail.addEventListener("click", async () => {
+    const aviso = document.querySelector(".aviso-copia");
+    try {
+      await navigator.clipboard.writeText("juliaromeralage@gmail.com");
+      aviso.textContent = "E-mail copiado!";
+    } catch {
+      aviso.textContent = "Selecione o endereço acima para copiar.";
+    }
+  });
+}
+// O menu acompanha a seção sem interceptar a rolagem nativa.
+if (document.body.classList.contains("pagina-inicio")) {
+  const links = [...document.querySelectorAll('#menu-principal a[href^="#"]')];
+  const secoes = links.map(link => document.querySelector(link.getAttribute("href")));
+  let agendado = false;
+  function atualizarSecao() {
+    let atual = 0;
+    secoes.forEach((secao, indice) => {
+      if (secao.getBoundingClientRect().top <= innerHeight * .35) atual = indice;
+    });
+    links.forEach((link, indice) => {
+      if (indice === atual) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
+    agendado = false;
+  }
+  addEventListener("scroll", () => {
+    if (!agendado) { agendado = true; requestAnimationFrame(atualizarSecao); }
+  }, { passive: true });
+  addEventListener("resize", atualizarSecao);
+  atualizarSecao();
+}
