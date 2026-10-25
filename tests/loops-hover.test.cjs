@@ -29,6 +29,13 @@ const assert = require('node:assert/strict');
     await page.emulateMedia({ reducedMotion: 'reduce' });
     for (const path of ['/', '/projetos.html']) {
       await page.goto('http://127.0.0.1:4173' + path + '#leve-mp4');
+      await page.locator('.smartphone').hover();
+      const cameraVisible = await page.locator('.smartphone-ilha').evaluate(e => {
+        const style = getComputedStyle(e);
+        const rect = e.getBoundingClientRect();
+        return style.visibility === 'visible' && style.opacity === '1' && Number(style.zIndex) >= 2 && rect.width >= 90 && rect.height >= 24;
+      });
+      assert.equal(cameraVisible, true, 'Leve camera remains visible on hover');
       await page.locator('.notebook').hover();
       await page.waitForTimeout(220);
       assert.equal(await page.locator('.notebook-tela').evaluate(e => getComputedStyle(e).borderTopColor), 'rgb(215, 189, 129)');
@@ -37,6 +44,6 @@ const assert = require('node:assert/strict');
       assert.equal(await page.locator('.notebook-tela').evaluate(e => getComputedStyle(e).borderTopColor), 'rgb(215, 189, 129)');
       assert.equal(await page.locator('.faixa-trilho').evaluateAll(es => es.every(e => getComputedStyle(e).animationName === 'none')), true);
     }
-    console.log('PASS continuous loops at six widths; Mira gold hover/focus on both pages; reduced motion');
+    console.log('PASS continuous loops; Leve camera hover; Mira gold hover/focus; reduced motion');
   } finally { await browser.close(); }
 })().catch(error => { console.error(error); process.exitCode = 1; });
