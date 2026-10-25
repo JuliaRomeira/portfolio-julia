@@ -93,8 +93,8 @@ a:hover > span[aria-hidden]:not(.smartphone-ilha):not(.smartphone-home) { transf
 .faixa-trilho i { padding-inline: 18px; color: var(--cor-glow-rosa); font-style: normal; }
 .faixa-linha-inferior i { color: #f3d285; }
 @keyframes correr-faixa { to { transform: translateX(calc(-1 * var(--faixa-passo))); } }
-.projeto { padding-block: 100px 60px; }
-.projeto + .projeto { margin-top: 32px; border-top: 1px solid var(--cor-borda); }
+.projeto { padding-block: 100px 24px; }
+.projeto + .projeto { margin-top: 24px; border-top: 1px solid var(--cor-borda); }
 .projeto-cabecalho { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; }
 .numero-projeto { display: inline-block; margin-right: 22px; font-weight: 700; font-size: 32px; line-height: 1; letter-spacing: -.04em; }
 .projeto-tipo { margin: 0; color: var(--cor-suave); font-size: 13px; }
@@ -162,13 +162,14 @@ h2 em { color: #a2a2a7; font-weight: inherit; font-style: normal; }
 .case-detalhes summary span { font-size: 12px; color: var(--cor-suave); }
 .case-detalhes summary::after { content: "+"; margin-left: auto; font-size: 24px; color: var(--cor-editorial); }
 .case-detalhes[open] summary::after { content: "−"; }
-.case-detalhes[open] { padding-bottom: 28px; }
+.case-detalhes[open] { padding-bottom: 24px; }
 .case-detalhes summary { padding-inline: 16px; background: #bca8ff08; transition: background-color 200ms ease, color 200ms ease; }
 .case-detalhes summary:hover, .case-detalhes summary:focus-visible { background: #bca8ff18; color: #d8caff; }
 .case-detalhes[open] summary { background: #bca8ff12; box-shadow: inset 3px 0 #bca8ff; }
 .cargo-descricao p { margin: 20px 0 0; max-width: 65ch; color: var(--cor-suave); font-size: 15px; line-height: 1.8; }
 
-.minha-atuacao { display: grid; grid-template-columns: 180px 1fr; gap: 24px; padding-top: 24px; }
+.minha-atuacao { display: grid; grid-template-columns: 180px 1fr; gap: 24px; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--cor-borda); }
+.minha-atuacao > h3, .minha-atuacao > p { margin-block: 0; }
 .minha-atuacao p { max-width: 780px; margin-bottom: 0; font-size: 14px; line-height: 1.8; color: var(--cor-suave); }
 .case-grid, .percurso-etapas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; margin: 32px 0 0; padding: 0; list-style: none; }
 .case-grid article { border-top: 1px solid var(--cor-borda); padding-top: 20px; }
@@ -349,6 +350,7 @@ h2 em { color: #a2a2a7; font-weight: inherit; font-style: normal; }
 .projeto-resultado .reducao-teste { display: block; margin-bottom: 4px; }
 .reducao-teste > span { color: #bca8ff; font-size: 1.35em; white-space: nowrap; }
 .case-detalhes > :not(summary) { margin-inline: clamp(12px, 2vw, 24px); }
+.case-detalhes > .minha-atuacao { margin-inline: 0; padding-inline: clamp(12px, 2vw, 24px); }
 .case-detalhes > .tecnologias { margin-top: 28px; }
 .case-detalhes .demonstracao { margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--cor-borda); }
 .demonstracao h3 { font-size: clamp(26px, 3vw, 36px); line-height: 1.3; }
