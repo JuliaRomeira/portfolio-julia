@@ -261,8 +261,8 @@ h2 em { color: #a2a2a7; font-weight: inherit; font-style: normal; }
   .projetos-indice { grid-template-columns: 1fr; gap: 0; padding-block: 8px; }
   .faixa-cinetica { min-height: clamp(170px, calc(28vw + 48px), 244px); margin-block: 6px 0; }
   .faixa-linha { width: 112%; }
-  .faixa-linha-superior { transform: translateY(4vw) rotate(10deg); }
-  .faixa-linha-inferior { transform: translateY(-4vw) rotate(-10deg); }
+  .faixa-linha-superior { transform: rotate(10deg); }
+  .faixa-linha-inferior { transform: rotate(-10deg); }
   .faixa-trilho span { padding-block: 10px; font-size: 12px; }
   .faixa-trilho i { padding-inline: 12px; }
   .projetos-indice a { padding-block: 14px; }
