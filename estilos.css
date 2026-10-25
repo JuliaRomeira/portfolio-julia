@@ -71,7 +71,7 @@ h1, h2, h3, p { margin-top: 0; }
 .botao { border-bottom: 1px solid var(--cor-editorial); }
 .link-secundario { color: var(--cor-suave); }
 .botao span, .link-secundario span { color: var(--cor-editorial); transition: transform 180ms ease; }
-a:hover > span[aria-hidden] { transform: translate(2px, -2px); }
+a:hover > span[aria-hidden]:not(.smartphone-ilha):not(.smartphone-home) { transform: translate(2px, -2px); }
 .link-secundario:hover { color: var(--cor-texto); text-decoration: underline; text-underline-offset: 6px; }
 .projetos-indice { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; padding-block: 24px; border-block: 1px solid var(--cor-borda); }
 .projetos-indice a { display: flex; gap: 18px; min-height: 48px; align-items: baseline; }

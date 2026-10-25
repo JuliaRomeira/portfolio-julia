@@ -33,9 +33,11 @@ const assert = require('node:assert/strict');
       const cameraVisible = await page.locator('.smartphone-ilha').evaluate(e => {
         const style = getComputedStyle(e);
         const rect = e.getBoundingClientRect();
-        return style.visibility === 'visible' && style.opacity === '1' && Number(style.zIndex) >= 2 && rect.width >= 90 && rect.height >= 24;
+        const phone = e.parentElement.getBoundingClientRect();
+        const centered = Math.abs((rect.left + rect.width / 2) - (phone.left + phone.width / 2)) < .5;
+        return style.visibility === 'visible' && style.opacity === '1' && Number(style.zIndex) >= 2 && rect.width >= 90 && rect.height >= 24 && centered;
       });
-      assert.equal(cameraVisible, true, 'Leve camera remains visible on hover');
+      assert.equal(cameraVisible, true, 'Leve camera remains visible and centered on hover');
       await page.locator('.notebook').hover();
       await page.waitForTimeout(220);
       assert.equal(await page.locator('.notebook-tela').evaluate(e => getComputedStyle(e).borderTopColor), 'rgb(215, 189, 129)');
