@@ -6,6 +6,10 @@ para resolver problemas reais.
 
 **Acesse online:** [portfolio-julia-nine.vercel.app](https://portfolio-julia-nine.vercel.app)
 
+![Imagem de apresentação do portfólio](./assets/social-preview-20261026.jpg)
+
+O portfólio reúne projetos práticos e experiências relacionadas a desenvolvimento de software. O README documenta a apresentação pública e o repositório preserva o código e as verificações automatizáveis.
+
 ## Projeto em destaque
 
 - **Mira Distribuidora:** plataforma de catálogo e cotações para um negócio real.
@@ -36,3 +40,7 @@ hierarquia visual forte e animações sutis guiadas pela rolagem da página.
 ---
 
 Desenvolvido por [Júlia Romeira](https://github.com/JuliaRomeira).
+
+## Verificações
+
+A pasta `tests/` contém verificações de navegação, páginas, animações e responsividade. Alguns testes de interface utilizam Playwright e dependem de navegador e servidor local configurados. A existência dos testes não significa, por si só, que todos estejam passando em CI.
